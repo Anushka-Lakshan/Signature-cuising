@@ -803,3 +803,9 @@ form textarea{
     border: #8A8A8A solid 1px;
     background-color: #f2f2f2;
 }
+
+.error-msg{
+    width: 100%;
+    color: red;
+    font-size: 0.8rem;
+}

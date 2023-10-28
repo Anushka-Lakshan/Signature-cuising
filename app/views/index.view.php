@@ -2,7 +2,7 @@
 
     <?php include("app/views/partials/header.php");  ?>
 
-
+    
 
     <!-- main content starts here -->
     <div class="hero-section">

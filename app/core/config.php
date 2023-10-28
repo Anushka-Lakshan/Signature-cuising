@@ -1,7 +1,7 @@
 <?php
 
 //database name
-define('DB_NAME', "eshop_mvc");
+define('DB_NAME', "Signature");
 define('DB_HOST', "Localhost");
 define('DB_USER', "root");
 define('DB_PASS', "");

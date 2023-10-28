@@ -21,10 +21,18 @@
     <!-- animate on scroll js -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+    
+
 </head>
 
 <body>
 
+    <?php 
+        if(isset($_SESSION['temp_msg'])){
+            echo "<script>alert('".$_SESSION['temp_msg']."');</script>";
+            unset($_SESSION['temp_msg']);
+        }
+    ?>
     <!-- fixed navigation -->
     <nav>
         <div id="logo">
