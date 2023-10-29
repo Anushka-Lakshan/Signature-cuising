@@ -23,6 +23,14 @@
 
                     <form action="" method="post">
 
+                    <?php if(isset($errors) && count($errors) > 0): ?>
+                    <div class="error-msg">
+                        <?php foreach ($errors as $error): ?>
+                            <p><?php echo $error; ?></p>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
+
                         <label for="Email" data-aos="fade-left" data-aos-delay="300" data-aos-duration="600">Email*</label>
                         <input type="email" name="email" id="email" required data-aos="fade-left" data-aos-delay="300" data-aos-duration="600">
 

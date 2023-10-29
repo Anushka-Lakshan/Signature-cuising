@@ -1,5 +1,10 @@
 <?php
 
+if( isset($_SESSION['Customer_Id'])){
+    header("Location: /");
+    die;
+}
+
 include("app/models/Branch.model.php");
 
 $Branch = new Branch();
@@ -10,13 +15,15 @@ $errors = [];
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-    show($_POST);
+    // show($_POST);
     
     include("app/models/Customer.model.php");
 
     $Customer = new Customer();
 
     $errors = $Customer::Reister();
+
+    sweetAlert('Sign up failed! Please check details','', 'error');
 
 
 }

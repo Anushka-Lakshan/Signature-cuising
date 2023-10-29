@@ -98,9 +98,7 @@
                     
                     <div class="form-full">
                         <label for="reg-Address">Address*</label>
-                        <textarea name="reg-Address" id="reg-Address">
-                            <?php echo isset($_POST['reg-Address']) ? $_POST['reg-Address'] : ''; ?>
-                        </textarea>
+                        <textarea name="reg-Address" id="reg-Address"><?php echo isset($_POST['reg-Address']) ? $_POST['reg-Address'] : ''; ?></textarea>
                     </div>
     
                     <button class="form-full-btn btn-main" type="submit">Register</button>

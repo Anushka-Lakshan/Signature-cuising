@@ -21,17 +21,32 @@
     <!-- animate on scroll js -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
 <body>
 
     <?php 
-        if(isset($_SESSION['temp_msg'])){
-            echo "<script>alert('".$_SESSION['temp_msg']."');</script>";
+        
+        if (isset($_SESSION['temp_msg'])) {
+            echo '
+            <script>
+                Swal.fire({
+                    title: "'. $_SESSION['temp_msg']. '",
+                    text: "'. (isset($_SESSION['temp_msg_secondery']) ? $_SESSION['temp_msg_secondery'] : ''). '",
+                    icon: "'. (isset($_SESSION['temp_msg_type']) ? $_SESSION['temp_msg_type'] : 'success'). '",
+                    showCancelButton: false,
+                    confirmButtonText: "Continue"
+                });
+            </script>
+            ';
             unset($_SESSION['temp_msg']);
+            unset($_SESSION['temp_msg_secondery']);
+            unset($_SESSION['temp_msg_type']);
         }
+        
     ?>
     <!-- fixed navigation -->
     <nav>
@@ -41,11 +56,42 @@
         <div class="nav-area">
             <div class="subNav">
 
+
                 <div class="dropdown">
                     <button onclick="subnav()" class="subnav-dropbtn">Account Options</button>
                     <div id="Subnav-Dropdown" class="dropdown-content">
-                        <a href="/register">Sign in</a>
-                        <a href="/login">Log in</a>
+
+                        <?php if (isset($_SESSION['Customer_Id'])): ?>
+                            <a href="/my-account">My Account</a>
+                            <a href="#"  onclick="logout()">Logout</a>
+
+                            <script>
+
+                                function logout(){
+                                    Swal.fire({
+                                        title: 'Do you want to log out?',
+                                        icon: 'question',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#FF0000', // Red color for "Yes"
+                                        confirmButtonText: 'Yes',
+                                        cancelButtonText: 'Cancel'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            // User clicked "Yes," redirect to /logout
+                                            window.location.href = '/logout';
+                                        }
+                                    });
+                                }
+                            </script>
+
+                        <?php else: ?>
+                            <a href="/register">Sign in</a>
+                            <a href="/login">Log in</a>
+
+                        <?php endif; ?>
+
+                        <!-- <a href="/register">Sign in</a>
+                        <a href="/login">Log in</a> -->
                         <span>
                             <span id="cartBubble">
                                 2

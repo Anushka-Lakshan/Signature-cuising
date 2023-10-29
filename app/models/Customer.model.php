@@ -38,7 +38,7 @@ Class Customer
         }
 
         if (! Validator::date($_POST['reg-dob'], '1900-01-01', '2024-01-01')) {
-            $errors[''] = 'Please Enter Date of Birth Phone number';
+            $errors[''] = 'Please Enter valid Date of Birth';
         }
 
         //check user entered the right branch number
@@ -87,17 +87,84 @@ Class Customer
             $result = $db->write($query,$data);
 
             if($result){
-            
-                $_SESSION['temp_msg'] = "Sign up success! Please Login to continue shopping..";
-                header("Location: /login");
+
+                self::Login_to_system($email, $password);
+                sweetAlert("Sign up success!","welcome to Signature Cuisine family!","success");
+
+                header("Location: /");
                 die;
             }
             else{
                 return $errors;
             }
         }
+        else{
+            return $errors;
+        }
 
 
+    }
+
+    public static function Login($email, $password){
+
+        $data = array();
+        $errors = array();
+
+        include "app/core/Validator.php";
+
+        $Validate = new Validator();
+
+        if (! Validator::email($email)) {
+            $errors[''] = 'Please Enter Valid Email Address.';
+        }
+
+        if( ! Validator::password($password)) {
+            $errors[''] = 'Please Enter Valid Password';
+        }
+
+        if(empty($errors)){
+
+            if (self::Login_to_system($email, $password)){
+
+                sweetAlert("Login success!","welcome back " . $_SESSION['Customer_Name'],"success");
+                header("Location: /");
+                die;
+            }else{
+                $errors[''] = "Invalid credentials, User not found";
+
+                return $errors;
+            }
+
+        }else{
+            return $errors;
+        }
+
+        
+    }
+
+    public static function Login_to_system($email, $password){
+
+        $data = array();
+        $errors = array();
+        $db = Database::getInstance();
+
+        //check user exist
+        $sql = "select * from customers where Email = :email and Password = :password limit 1";
+        $arr['email'] = $email;
+        $arr['password'] = hash('sha3-256',$password);
+
+        $check = $db->read($sql,$arr);
+
+        if(is_array($check) && count($check) > 0){
+           
+
+            $_SESSION['Customer_Id'] = $check[0]['Customer_Id'];
+            $_SESSION['Customer_Name'] = $check[0]['Name'];
+            
+            return true;
+        }else{
+            return false;
+        }
     }
 
 	
