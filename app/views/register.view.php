@@ -56,7 +56,7 @@
                     <div class="form-col">
                         <label for="reg-dob">Date of Birth*</label>
                         <input type="date" name="reg-dob" id="reg-dob" required
-                        value="<?php echo isset($_POST['reg-dob']) ? $_POST['reg-dob'] : ''; ?>">
+                        value="<?php echo isset($_POST['reg-dob']) ? $_POST['reg-dob'] : '2000-01-01'; ?>" max="2010-01-01" min="1900-01-01">
                         
                     </div>
 

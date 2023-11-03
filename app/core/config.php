@@ -8,6 +8,10 @@ define('DB_PASS', "");
 define('DB_TYPE', "mysql");
 
 
+ini_set('date.timezone','Asia/Colombo');
+date_default_timezone_set('Asia/Colombo');
+
+
 define('DEBUG', true);
 if(DEBUG){
     ini_set('display_errors', 1);

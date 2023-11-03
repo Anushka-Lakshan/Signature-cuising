@@ -46,7 +46,7 @@
                     
                     <div class="form-col">
                         <label for="res-phone">Phone*</label>
-                        <input type="text" name="res-phone" id="res-phone" required>
+                        <input type="tel" name="res-phone" id="res-phone" required>
                     </div>
 
                     <div class="form-col">
