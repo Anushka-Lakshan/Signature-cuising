@@ -17,6 +17,12 @@ $routes = [
     '/cart' => 'controllers/cart.php',
     '/my-account' => 'controllers/my-account.php',
     '/logout' => 'controllers/logout.php',
+
+    // admin routes
+    '/admin-login' => 'controllers/admin/admin-login.php',
+    '/admin-dashboard' => 'controllers/admin/dashboard.php',
+    '/admin-logout' => 'controllers/admin/admin-logout.php',
+    
 ];
 
 function routeToController($uri, $routes) {

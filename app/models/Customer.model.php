@@ -19,7 +19,7 @@ Class Customer
         }
 
         if (! Validator::email($_POST['reg-email'])) {
-            $errors[''] = 'Please Enter Valid Email Address.';
+            array_push($errors, 'Please Enter Valid Email Address.');
         }
 
         //check email already exist
@@ -29,16 +29,16 @@ Class Customer
         $check = $db->read($sql,$arr);
 
         if(is_array($check) && count($check) > 0){
-           $errors[''] = "This email is already in use";
+            array_push($errors, 'This email is already in use');
             // show($check);
         }
 
         if (! Validator::string($_POST['reg-phone'], 5, 50)) {
-            $errors[''] = 'Please Enter Valid Phone number';
+            array_push($errors, 'Please Enter Valid Phone number');
         }
 
         if (! Validator::date($_POST['reg-dob'], '1900-01-01', '2024-01-01')) {
-            $errors[''] = 'Please Enter valid Date of Birth';
+            array_push($errors, 'Please Enter valid Date of Birth');
         }
 
         //check user entered the right branch number
@@ -46,23 +46,25 @@ Class Customer
         $branch = new Branch();
         
         if(! $branch->branch_exists($_POST['res-branch'])){
-            $errors[''] = 'Please select Valid Branch';
+            array_push($errors, 'Please select Valid Branch');
         }
 
         if( ! Validator::string($_POST['NIC'], 6, 20)) {
-            $errors[''] = 'Please Enter Valid NIC Number';
+            array_push($errors, 'Please Enter Valid NIC Number');
         }
 
         if( ! Validator::password($_POST['reg-pass'])) {
-            $errors[''] = 'password must have more than 6 characters, must have Capital and Simple letters with numbers and special Characters';
+            array_push($errors, 'password must have more than 6 characters, must have Capital and Simple letters with numbers and special Characters');
         }
 
         if( $_POST['reg-pass'] !== $_POST['reg-pass2']) {
-            $errors[''] = 'Password didn\'t match';
+            
+            array_push($errors, 'Password didn\'t match');
         }
 
         if( ! Validator::string($_POST['reg-Address'], 10, 300)) {
-            $errors[''] = 'Please Enter Valid Address';
+            
+            array_push($errors, 'Please Enter Valid Address');
         }
 
 
@@ -88,11 +90,12 @@ Class Customer
 
             if($result){
 
-                self::Login_to_system($email, $password);
-                sweetAlert("Sign up success!","welcome to Signature Cuisine family!","success");
+                self::Login_to_system($data['Email'], $data['Password']);
+                sweetAlert("Sign up success!","welcome to Signature Cuisine family!, Please Login to continue","success");
 
-                header("Location: /");
+                header("Location: /login");
                 die;
+                
             }
             else{
                 return $errors;
@@ -155,6 +158,7 @@ Class Customer
 
         $check = $db->read($sql,$arr);
 
+
         if(is_array($check) && count($check) > 0){
            
 
@@ -164,6 +168,7 @@ Class Customer
             return true;
         }else{
             return false;
+            
         }
     }
 
