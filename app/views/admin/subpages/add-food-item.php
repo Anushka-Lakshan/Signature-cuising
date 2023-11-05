@@ -7,7 +7,7 @@
                 <div class="row">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Food-items</a></li>
+                            <li class="breadcrumb-item"><a href="/admin-dashboard?page=food-items">Food-items</a></li>
                             <li class="breadcrumb-item active text-white" aria-current="page">
                                 Add New Item
                             </li>
@@ -21,26 +21,117 @@
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- End Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
+            
+            <?php
+                if(isset($_POST['add-food-item'])) {
+
+                    show($_POST);
+
+                    include "app/models/Food.model.php";
+
+                    $food = new Food();
+
+                    $errors = $food::add_item();
+
+                    if($errors === array('success' => true)) {
+                        echo '
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Success!</strong> Member Added Successfully
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+
+                                <script>
+                                    swal("Success!", "Item Added Successfully", "success").then(function() {
+                                        window.location = "/admin-dashboard?page=food-items";
+                                    })
+                                </script>
+                            ';
+
+                        unset($_POST);
+                    }
+                    else if(is_array($errors) && count($errors) > 0) {
+                            echo'
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                ';
+                            foreach($errors as $error) {
+                                
+                                echo $error . "<br>";
+                            }
+                            echo '
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                ';
+                    }
+
+                    // $data = array(
+                    //     'name' => $_POST['Iname'],
+                    //     'price' => $_POST['Price'],
+                    //     'description' => $_POST['Description'],
+                    //     'category' => $_POST['Category'],
+
+                    // );
+
+                    // include "app/models/Food.model.php";
+
+                    // $admin = new Admin();
+
+                    // $errors = $admin::Add_member($data);
+
+                    // if($errors === array('success' => true)) {
+                        
+                    //     echo '
+                    //             <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    //                 <strong>Success!</strong> Member Added Successfully
+                    //                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    //             </div>
+
+                    //             <script>
+                    //                 window.location = "/admin-dashboard?page=members";
+                    //             </script>
+                    //         ';
+
+                    //     unset($_POST);
+
+                    // }
+                    // else if(is_array($errors) && count($errors) > 0) {
+                    //     echo'
+                    //             <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    //         ';
+                    //     foreach($errors as $error) {
+                            
+                    //         echo $error . "<br>";
+                    //     }
+                    //     echo '
+                    //             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    //             </div>
+                    //         ';
+                    // }
+
+                }
+            ?>
+
+           <?php
+                include "app/models/Category.model.php";
+
+                $Category = new Category();
+
+                $allCategories = $Category::get_all();
+           ?>
+
             <div class="container-fluid">
 
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card">
 
-
+                            <form action="/admin-dashboard?page=add-food-item" method="POST" enctype="multipart/form-data">
                             <div class="card-body">
 
                                 <div class="form-group row">
                                     <label for="Iname" class="col-sm-3 text-end control-label col-form-label">Item
                                         Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="Iname" id="Iname"
+                                        <input type="text" class="form-control" name="name" id="Iname"
                                             placeholder="Item name Here" required>
                                     </div>
                                 </div>
@@ -53,8 +144,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1">Rs.</span>
                                             </div>
-                                            <input type="number" class="form-control" placeholder="Price" id="Price"
-                                                name="Price" required>
+                                            <input type="number" class="form-control" placeholder="price" id="Price"
+                                                name="price" required>
                                         </div>
                                     </div>
                                 </div>
@@ -66,10 +157,12 @@
                                     <div class="col-sm-9">
                                         <select class="form-control" id="cat" name="cat">
                                             <option value=""> Select </option>
-                                            <option value="1">Offer</option>
-                                            <option value="1">Rice</option>
-                                            <option value="1">Pasta</option>
-                                            <option value="1">Noodels</option>
+
+                                            <?php 
+                                                foreach ($allCategories as $key => $value) {
+                                                    echo "<option value='" . $value['id'] . "'>" . $value['name'] . "</option>";
+                                                }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -102,9 +195,12 @@
                                     <div class="col-sm-9">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="customFile"
-                                                accept="image/png, image/jpeg, image/jpg" name="Iimage" required>
+                                                accept="image/png, image/jpeg, image/jpg" name="image" required>
                                             <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
+                                        <!-- show boostrap message (only accepted Jpg,jpeg and png files and must be less than 2mb) -->
+                                        <p class="text-warning">Only accepted Jpg,jpeg and png files and must be less than 2mb</p>
+
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -118,11 +214,12 @@
                                 <div class="form-group row">
                                     <!-- full width booststrap button -->
                                     <div class="offset-sm-3 col-sm-9">
-                                        <button type="submit" class="btn btn-info btn-lg w-100">Submit</button>
+                                        <button type="submit" class="btn btn-info btn-lg w-100" name="add-food-item">Submit</button>
                                     </div>
 
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
