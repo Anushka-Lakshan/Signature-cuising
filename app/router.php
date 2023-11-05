@@ -22,6 +22,11 @@ $routes = [
     '/admin-login' => 'controllers/admin/admin-login.php',
     '/admin-dashboard' => 'controllers/admin/dashboard.php',
     '/admin-logout' => 'controllers/admin/admin-logout.php',
+
+    //admin ajax routes
+    '/admin/AJAX/add_category' => 'controllers/admin/AJAX/add_category.php',
+    '/admin/AJAX/edit_category' => 'controllers/admin/AJAX/edit_category.php',
+    '/admin/AJAX/delete_category' => 'controllers/admin/AJAX/delete_category.php',
     
 ];
 
