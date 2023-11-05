@@ -30,6 +30,7 @@ $routes = [
     '/admin/AJAX/add_category' => 'controllers/admin/AJAX/add_category.php',
     '/admin/AJAX/edit_category' => 'controllers/admin/AJAX/edit_category.php',
     '/admin/AJAX/delete_category' => 'controllers/admin/AJAX/delete_category.php',
+    '/admin/AJAX/delete_food' => 'controllers/admin/AJAX/delete_food.php',
     
 ];
 

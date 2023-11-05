@@ -92,7 +92,7 @@
                                     echo "<td>" . $visibility . "</td>";
                                     echo "<td>
                                             <a href='". BASE_URL ."/admin-dashboard?page=edit-food-item&id=" . $value['id'] . "' class='btn btn-primary'>Edit</a>
-                                            <a href='#' class='btn btn-danger'>Delete</a>
+                                            <a href='#' class='btn btn-danger' onclick='deleteFoodItem(" . $value['id'] . ")'>Delete</a>
                                           </td>";
                                     echo "</tr>";
                                 }
@@ -116,6 +116,44 @@
                     </div>
                   </div>
                   
+                  <script>
+                    function deleteFoodItem(id) {
+                        Swal.fire({
+                            title: 'Are you sure? You want to delete this Item?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#ff6347',
+                            cancelButtonColor: '#48c28d',
+                            confirmButtonText: 'Yes, delete it!'
+
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Perform actions with the form data, e.g., make an AJAX request
+                                $.ajax({
+                                    url: '<?=BASE_URL?>/admin/AJAX/delete_food',
+                                    type: 'POST',
+                                    data: { food_id: id },
+                                    success: function (data) {
+                                        // Check the response from the server
+                                        if (data.success) {
+                                            Swal.fire('Success', 'Item deleted successfully', 'success').then(() => {
+                                                window.location.reload();
+                                            })
+                                        } else {
+                                            Swal.fire('Failed', 'Item could not be deleted', 'error');
+                                            console.log(data);
+                                        }
+                                    },
+                                    error: function () {
+                                        Swal.fire('Error', 'An error occurred while submitting the form', 'error');
+                                        console.log(data);
+                                    }
+                                });
+                            }
+                        })
+                    }
+                  </script>
                   
                   
                   
