@@ -7,7 +7,7 @@
                 <div class="row">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/admin-dashboard?page=food-items">Food-items</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/admin-dashboard?page=food-items">Food-items</a></li>
                             <li class="breadcrumb-item active text-white" aria-current="page">
                                 Add New Item
                             </li>
@@ -25,8 +25,6 @@
             <?php
                 if(isset($_POST['add-food-item'])) {
 
-                    show($_POST);
-
                     include "app/models/Food.model.php";
 
                     $food = new Food();
@@ -36,14 +34,16 @@
                     if($errors === array('success' => true)) {
                         echo '
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Success!</strong> Member Added Successfully
+                                    <strong>Success!</strong> Item Added Successfully
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
 
                                 <script>
-                                    swal("Success!", "Item Added Successfully", "success").then(function() {
-                                        window.location = "/admin-dashboard?page=food-items";
-                                    })
+                                console.log("Before swal");
+                                swal("Success!", "Item Added Successfully", "success").then(function() {
+                                    window.location = "'.BASE_URL.'/admin-dashboard?page=food-items";
+                                });
+                                
                                 </script>
                             ';
 
@@ -124,7 +124,7 @@
                     <div class="col-md-6">
                         <div class="card">
 
-                            <form action="/admin-dashboard?page=add-food-item" method="POST" enctype="multipart/form-data">
+                            <form action="<?= BASE_URL ?>/admin-dashboard?page=add-food-item" method="POST" enctype="multipart/form-data">
                             <div class="card-body">
 
                                 <div class="form-group row">

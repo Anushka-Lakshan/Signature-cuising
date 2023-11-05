@@ -7,4 +7,4 @@ if(isset($_SESSION['Customer_Id'])){
 
 sweetAlert("Logout success!","We hope to welcome you back soon","success");
 
-header("Location: /");
+header("Location: ".BASE_URL."/");

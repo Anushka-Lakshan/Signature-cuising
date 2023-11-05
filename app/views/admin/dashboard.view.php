@@ -52,7 +52,7 @@
           <!-- ============================================================== -->
           <!-- Logo -->
           <!-- ============================================================== -->
-          <a class="navbar-brand" href="/admin-dashboard">
+          <a class="navbar-brand" href="<?= BASE_URL ?>/admin-dashboard">
             <!-- Logo icon -->
             <b class="logo-icon ps-2">
               <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -91,7 +91,7 @@
 
             <!-- add bootstrap title to navbar -->
             <li class="nav-item d-none d-lg-block fs-8">
-              <a class="nav-link" href="/">Signature Cuisine: Dashboard</a>
+              <a class="nav-link" href="<?= BASE_URL ?>/admin-dashboard">Signature Cuisine: Dashboard</a>
             </li>
 
 
@@ -134,7 +134,7 @@
                     }).then((result) => {
                       if (result.isConfirmed) {
                         // User clicked "Yes," redirect to /logout
-                        window.location.href = '/admin-logout';
+                        window.location.href = '<?= BASE_URL ?>/admin-logout';
                       }
                     });
                   }
@@ -223,42 +223,42 @@
                                     } ?>">
               <a class="sidebar-link waves-effect waves-dark sidebar-link <?php if ($page == 'dashboard') {
                                                                             echo 'active';
-                                                                          } ?>" href="/admin-dashboard" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a>
+                                                                          } ?>" href="<?= BASE_URL ?>/admin-dashboard" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a>
             </li>
             <li class="sidebar-item <?php if ($page == 'food-items') {
                                       echo 'selected';
                                     } ?>">
               <a class="sidebar-link waves-effect waves-dark sidebar-link <?php if ($page == 'food-items') {
                                                                             echo 'active';
-                                                                          } ?>" href="/admin-dashboard?page=food-items" aria-expanded="false"><i class="mdi mdi-food"></i><span class="hide-menu">Food Items</span></a>
+                                                                          } ?>" href="<?= BASE_URL ?>/admin-dashboard?page=food-items" aria-expanded="false"><i class="mdi mdi-food"></i><span class="hide-menu">Food Items</span></a>
             </li>
             <li class="sidebar-item <?php if ($page == 'categories') {
                                       echo 'selected';
                                     } ?>">
               <a class="sidebar-link waves-effect waves-dark sidebar-link <?php if ($page == 'categories') {
                                                                             echo 'active';
-                                                                          } ?>" href="/admin-dashboard?page=categories" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Categories</span></a>
+                                                                          } ?>" href="<?= BASE_URL ?>/admin-dashboard?page=categories" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Categories</span></a>
             </li>
             <li class="sidebar-item <?php if ($page == 'orders') {
                                       echo 'selected';
                                     } ?>">
               <a class="sidebar-link waves-effect waves-dark sidebar-link <?php if ($page == 'orders') {
                                                                             echo 'active';
-                                                                          } ?>" href="/admin-dashboard?page=orders" aria-expanded="false"><i class="mdi mdi-package"></i><span class="hide-menu">Orders</span></a>
+                                                                          } ?>" href="<?= BASE_URL ?>/admin-dashboard?page=orders" aria-expanded="false"><i class="mdi mdi-package"></i><span class="hide-menu">Orders</span></a>
             </li>
             <li class="sidebar-item <?php if ($page == 'reservations') {
                                       echo 'selected';
                                     } ?>">
               <a class="sidebar-link waves-effect waves-dark sidebar-link <?php if ($page == 'reservations') {
                                                                             echo 'active';
-                                                                          } ?>" href="/admin-dashboard?page=reservations" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Reservations</span></a>
+                                                                          } ?>" href="<?= BASE_URL ?>/admin-dashboard?page=reservations" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Reservations</span></a>
             </li>
             <li class="sidebar-item <?php if ($page == 'contact-us') {
                                       echo 'selected';
                                     } ?>">
               <a class="sidebar-link waves-effect waves-dark sidebar-link <?php if ($page == 'contact-us') {
                                                                             echo 'active';
-                                                                          } ?>" href="/admin-dashboard?page=contact-us" aria-expanded="false"><i class="fas fa-comment"></i><span class="hide-menu">Contact Us</span></a>
+                                                                          } ?>" href="<?= BASE_URL ?>/admin-dashboard?page=contact-us" aria-expanded="false"><i class="fas fa-comment"></i><span class="hide-menu">Contact Us</span></a>
             </li>
 
             <?php if ($_SESSION['admin_role'] == 'admin') { ?>
@@ -268,14 +268,14 @@
                                       } ?>">
                 <a class="sidebar-link waves-effect waves-dark sidebar-link <?php if ($page == 'customers') {
                                                                               echo 'active';
-                                                                            } ?>" href="/admin-dashboard?page=customers" aria-expanded="false"><i class="mdi mdi-human-greeting"></i><span class="hide-menu">Customers</span></a>
+                                                                            } ?>" href="<?= BASE_URL ?>/admin-dashboard?page=customers" aria-expanded="false"><i class="mdi mdi-human-greeting"></i><span class="hide-menu">Customers</span></a>
               </li>
               <li class="sidebar-item <?php if ($page == 'branches') {
                                         echo 'selected';
                                       } ?>">
                 <a class="sidebar-link waves-effect waves-dark sidebar-link <?php if ($page == 'branches') {
                                                                               echo 'active';
-                                                                            } ?>" href="/admin-dashboard?page=branches" aria-expanded="false"><i class="mdi mdi-store"></i><span class="hide-menu">Branches</span></a>
+                                                                            } ?>" href="<?= BASE_URL ?>/admin-dashboard?page=branches" aria-expanded="false"><i class="mdi mdi-store"></i><span class="hide-menu">Branches</span></a>
               </li>
 
               <li class="sidebar-item <?php if ($page == 'members') {
@@ -283,7 +283,7 @@
                                       } ?>">
                 <a class="sidebar-link waves-effect waves-dark sidebar-link <?php if ($page == 'members') {
                                                                               echo 'active';
-                                                                            } ?>" href="/admin-dashboard?page=members" aria-expanded="false"><i class="fas fa-chess"></i><span class="hide-menu">Admins & Staff</span></a>
+                                                                            } ?>" href="<?= BASE_URL ?>/admin-dashboard?page=members" aria-expanded="false"><i class="fas fa-chess"></i><span class="hide-menu">Admins & Staff</span></a>
               </li>
 
             <?php } ?>

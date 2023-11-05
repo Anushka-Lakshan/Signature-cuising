@@ -66,7 +66,7 @@
                                 <td class="text-warning"> <i class="far fa-clock me-1"></i> Pending </td>
                                 <td> <i class="far fa-money-bill-alt me-1"></i> Cash on Delivery</td>
                                 <td>
-                                    <a href="/admin-dashboard?page=view-order" class="btn btn-success">View</a>
+                                    <a href="<?= BASE_URL ?>/admin-dashboard?page=view-order" class="btn btn-success">View</a>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Change Status

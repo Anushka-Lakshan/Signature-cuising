@@ -7,6 +7,8 @@ define('DB_USER', "root");
 define('DB_PASS', "");
 define('DB_TYPE', "mysql");
 
+define('BASE_URL', "/Signature_cuising");
+
 
 ini_set('date.timezone','Asia/Colombo');
 date_default_timezone_set('Asia/Colombo');

@@ -47,7 +47,7 @@
                             console.log('Submitted: ' + inputFieldValue);
 
                             $.ajax({
-                                url: '/admin/AJAX/add_category',
+                                url: '<?=BASE_URL?>/admin/AJAX/add_category',
                                 type: 'POST',
                                 data: { category_name: inputFieldValue },
                                 success: function (data) {
@@ -148,7 +148,7 @@
                                 console.log('Submitted: ' + inputFieldValue);
 
                                 $.ajax({
-                                    url: '/admin/AJAX/edit_category',
+                                    url: '<?=BASE_URL?>/admin/AJAX/edit_category',
                                     type: 'POST',
                                     data: { category_name: inputFieldValue, category_id: id },
                                     success: function (data) {
@@ -191,7 +191,7 @@
                             if (result.isConfirmed) {
                                 // Perform actions with the form data, e.g., make an AJAX request
                                 $.ajax({
-                                    url: '/admin/AJAX/delete_category',
+                                    url: '<?=BASE_URL?>/admin/AJAX/delete_category',
                                     type: 'POST',
                                     data: { category_id: id },
                                     success: function (data) {

@@ -9,4 +9,4 @@ if(isset($_SESSION['admin_name'])){
 
 
 
-header("Location: /admin-login");
+header("Location: ".BASE_URL."/admin-login");

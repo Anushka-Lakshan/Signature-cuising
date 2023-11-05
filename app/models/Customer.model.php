@@ -93,7 +93,7 @@ Class Customer
                 self::Login_to_system($data['Email'], $data['Password']);
                 sweetAlert("Sign up success!","welcome to Signature Cuisine family!, Please Login to continue","success");
 
-                header("Location: /login");
+                header("Location: ".BASE_URL."/login");
                 die;
                 
             }
@@ -130,7 +130,7 @@ Class Customer
             if (self::Login_to_system($email, $password)){
 
                 sweetAlert("Login success!","welcome back " . $_SESSION['Customer_Name'],"success");
-                header("Location: /");
+                header("Location: ".BASE_URL."/");
                 die;
             }else{
                 $errors[''] = "Invalid credentials, User not found";

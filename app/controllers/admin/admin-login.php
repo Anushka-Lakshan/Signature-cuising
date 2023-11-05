@@ -1,7 +1,7 @@
 <?php
 
 if( isset($_SESSION['admin_name'])){
-    header("Location: /admin-dashboard");
+    header("Location: ".BASE_URL."/admin-dashboard");
     sweetAlert('You are already logged in','', 'warning');
     die;
 

@@ -7,7 +7,7 @@
                 <div class="row">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/admin-dashboard">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 Food Items
                             </li>
@@ -18,7 +18,7 @@
                     <div class="col-12 d-flex no-block align-items-center">
                         <h4 class="page-title">Food Items</h4>
                         <div class="ms-auto text-end">
-                            <a type="button" href="/admin-dashboard?page=add-food-item" class="btn btn-success btn-lg text-white">
+                            <a type="button" href="<?= BASE_URL ?>/admin-dashboard?page=add-food-item" class="btn btn-success btn-lg text-white">
                                 <i class="fas fa-plus" style="margin-right: 5px;"></i>
                                 Add New Food Item
                             </a>
@@ -27,12 +27,32 @@
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- End Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
+            
+            <?php
+                include "app/models/Food.model.php";
+
+                $food = new Food();
+
+                $tableData = $food::get_all();
+
+                
+                include "app/models/Category.model.php";
+
+                $category = new Category();
+
+                $categories = $category::get_all();
+
+                $categoryMap = array();
+
+                foreach ($categories as $category) {
+                    $categoryMap[$category['id']] = strtolower($category['name']);
+                }
+
+                
+
+            ?>
+
+
             <div class="container-fluid">
                 
                 <div class="card">
@@ -56,80 +76,27 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td>2</td>
-                              <td>Chicken Biriyani</td>
-                              <td>Rs.1200</td>
-                              <td><img width="50px" src="./assets/admin-assets/assets/images/big/img2.jpg" alt=""></td>
-                              <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.. </td>
-                              <td>Rice</td>
-                              <td>Visible</td>
-                              <td>
-                                <a href="#" class="btn btn-success">View</a>
-                                <a href="#" class="btn btn-primary">Edit</a>
-                                <a href="#" class="btn btn-danger">Delete</a>
-                              </td>
-                            </tr>
 
-                            <tr>
-                                <td>2</td>
-                                <td>Chicken Biriyani</td>
-                                <td>Rs.1200</td>
-                                <td><img width="50px" src="./assets/admin-assets/assets/images/big/img2.jpg" alt=""></td>
-                                <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.. </td>
-                                <td>Rice</td>
-                                <td>Visible</td>
-                                <td>
-                                  <a href="#" class="btn btn-success">View</a>
-                                  <a href="#" class="btn btn-primary">Edit</a>
-                                  <a href="#" class="btn btn-danger">Delete</a>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>3</td>
-                                <td>Chicken Biriyani</td>
-                                <td>Rs.1200</td>
-                                <td><img width="50px" src="./assets/admin-assets/assets/images/big/img2.jpg" alt=""></td>
-                                <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.. </td>
-                                <td>Rice</td>
-                                <td>Visible</td>
-                                <td>
-                                  <a href="#" class="btn btn-success">View</a>
-                                  <a href="#" class="btn btn-primary">Edit</a>
-                                  <a href="#" class="btn btn-danger">Delete</a>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>4</td>
-                                <td>Chicken Biriyani</td>
-                                <td>Rs.1200</td>
-                                <td><img width="50px" src="./assets/admin-assets/assets/images/big/img2.jpg" alt=""></td>
-                                <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.. </td>
-                                <td>Rice</td>
-                                <td>Visible</td>
-                                <td>
-                                  <a href="#" class="btn btn-success">View</a>
-                                  <a href="#" class="btn btn-primary">Edit</a>
-                                  <a href="#" class="btn btn-danger">Delete</a>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>5</td>
-                                <td>Chicken Biriyani</td>
-                                <td>Rs.1200</td>
-                                <td><img width="50px" src="./assets/admin-assets/assets/images/big/img2.jpg" alt=""></td>
-                                <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.. </td>
-                                <td>Rice</td>
-                                <td>Visible</td>
-                                <td>
-                                  <a href="#" class="btn btn-success">View</a>
-                                  <a href="#" class="btn btn-primary">Edit</a>
-                                  <a href="#" class="btn btn-danger">Delete</a>
-                                </td>
-                              </tr>
-                                    
-
-                            
+                            <?php
+                                foreach ($tableData as $key => $value) {
+                                  
+                                  $category_name = $categoryMap[$value['category_id']];
+                                  $visibility = $value['visibility'] == 1 ? "Visible" : "Hidden";
+                                    echo "<tr>";
+                                    echo "<td>" . $value['id'] . "</td>";
+                                    echo "<td>" . $value['name'] . "</td>";
+                                    echo "<td>" . $value['price'] . "</td>";
+                                    echo "<td><img width='50px' src='" . $value['img'] . "' alt=''></td>";
+                                    echo "<td>" . substr($value['description'], 0, 50) . '...' . "</td>";
+                                    echo "<td>" . $category_name . "</td>";
+                                    echo "<td>" . $visibility . "</td>";
+                                    echo "<td>
+                                            <a href='". BASE_URL ."/admin-dashboard?page=edit-food-item&id=" . $value['id'] . "' class='btn btn-primary'>Edit</a>
+                                            <a href='#' class='btn btn-danger'>Delete</a>
+                                          </td>";
+                                    echo "</tr>";
+                                }
+                            ?>
                             
                           </tbody>
                           <tfoot>

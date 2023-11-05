@@ -27,13 +27,15 @@ class Food
             array_push($errors, 'The Price is required.');
         }
 
-        if (!Validator::string($_POST['Desc'], 1, 200)) {
-            array_push($errors, 'The Description of no more than 200 characters is required.');
+        if (!Validator::string($_POST['Desc'], 1, 400)) {
+            array_push($errors, 'The Description of no more than 400 characters is required.');
         }
 
         if ($_POST['Visibility'] === true || $_POST['Visibility'] === false) {
             array_push($errors, 'The Visibility is required.');
         }
+
+        $_POST['Visibility'] = $_POST['Visibility'] == false ? 0 : 1;
 
         if ($_POST['cat'] == "") {
             array_push($errors, 'The Category is required.');
@@ -73,7 +75,7 @@ class Food
             $newFileName = "Food_img_" . uniqid() . '.' . $fileExtension;
 
             // Define the upload directory outside of the web root
-            $uploadDirectory = 'assets/images/Foods/' . $newFileName;
+            $uploadDirectory = './assets/Food-imgs/' . $newFileName;
 
             if (!move_uploaded_file($file['tmp_name'], $uploadDirectory)) {
                 array_push($errors, 'Failed to upload the file.');
@@ -86,12 +88,12 @@ class Food
                 'price' => $_POST['price'],
                 'description' => $_POST['Desc'],
                 'visibility' => $_POST['Visibility'],
-                'image' => $uploadDirectory,
-                'category' => $_POST['cat']
+                'img' => $uploadDirectory,
+                'category_id' => $_POST['cat']
             );
 
-            $query = "insert into products (name, price, description, visibility, image, category) values 
-            (:name, :price, :description, :visibility, :image, :category)";
+            $query = "insert into products (name, price, description, visibility, img, category_id) values 
+            (:name, :price, :description, :visibility, :img, :category_id)";
 
             $result = $DB->write($query, $DBdata);
 

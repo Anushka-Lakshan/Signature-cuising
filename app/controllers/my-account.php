@@ -1,7 +1,7 @@
 <?php
 
 if( !isset($_SESSION['Customer_Id'])){
-    header("Location: /login");
+    header("Location: ".BASE_URL."/login");
     die;
 }
 

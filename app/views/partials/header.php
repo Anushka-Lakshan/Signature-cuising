@@ -51,7 +51,7 @@
     <!-- fixed navigation -->
     <nav>
         <div id="logo">
-            <img src="./assets/images/logo.png" alt="Signature Cuisine Logo" onclick="location.href='/'">
+            <img src="./assets/images/logo.png" alt="Signature Cuisine Logo" onclick="location.href='<?= BASE_URL ?>/'">
         </div>
         <div class="nav-area">
             <div class="subNav">
@@ -62,7 +62,7 @@
                     <div id="Subnav-Dropdown" class="dropdown-content">
 
                         <?php if (isset($_SESSION['Customer_Id'])): ?>
-                            <a href="/my-account">My Account</a>
+                            <a href="<?= BASE_URL ?>/my-account">My Account</a>
                             <a href="#"  onclick="logout()">Logout</a>
 
                             <script>
@@ -78,15 +78,15 @@
                                     }).then((result) => {
                                         if (result.isConfirmed) {
                                             // User clicked "Yes," redirect to /logout
-                                            window.location.href = '/logout';
+                                            window.location.href = '<?= BASE_URL ?>/logout';
                                         }
                                     });
                                 }
                             </script>
 
                         <?php else: ?>
-                            <a href="/register">Sign in</a>
-                            <a href="/login">Log in</a>
+                            <a href="<?= BASE_URL ?>/register">Sign in</a>
+                            <a href="<?= BASE_URL ?>/login">Log in</a>
 
                         <?php endif; ?>
 
@@ -96,7 +96,7 @@
                             <span id="cartBubble">
                                 2
                             </span>
-                            <a href="/cart">Cart</a>
+                            <a href="<?= BASE_URL ?>/cart">Cart</a>
                         </span>
                     </div>
                 </div>
@@ -104,23 +104,23 @@
             </div>
             <div class="mainNav">
                 <ul class="">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/online-order">Online order</a></li>
-                    <li><a href="/reservation">Reservation</a></li>
-                    <li><a href="/gallery">Gallery</a></li>
-                    <li><a href="/facility">Facilities</a></li>
-                    <li><a href="/about">About us</a></li>
-                    <li><a href="/contact">Contact us</a></li>
+                    <li><a href="<?= BASE_URL ?>/">Home</a></li>
+                    <li><a href="<?= BASE_URL ?>/online-order">Online order</a></li>
+                    <li><a href="<?= BASE_URL ?>/reservation">Reservation</a></li>
+                    <li><a href="<?= BASE_URL ?>/gallery">Gallery</a></li>
+                    <li><a href="<?= BASE_URL ?>/facility">Facilities</a></li>
+                    <li><a href="<?= BASE_URL ?>/about">About us</a></li>
+                    <li><a href="<?= BASE_URL ?>/contact">Contact us</a></li>
                 </ul>
 
                 <ul id="Full-nav">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/online-order">Online order</a></li>
-                    <li><a href="/reservation">Reservation</a></li>
-                    <li><a href="/gallery">Gallery</a></li>
-                    <li><a href="/facility">Facilities</a></li>
-                    <li><a href="/about">About us</a></li>
-                    <li><a href="/contact">Contact us</a></li>
+                    <li><a href="<?= BASE_URL ?>/">Home</a></li>
+                    <li><a href="<?= BASE_URL ?>/online-order">Online order</a></li>
+                    <li><a href="<?= BASE_URL ?>/reservation">Reservation</a></li>
+                    <li><a href="<?= BASE_URL ?>/gallery">Gallery</a></li>
+                    <li><a href="<?= BASE_URL ?>/facility">Facilities</a></li>
+                    <li><a href="<?= BASE_URL ?>/about">About us</a></li>
+                    <li><a href="<?= BASE_URL ?>/contact">Contact us</a></li>
                     <img src="./assets/images/close.png" alt="nav-close" id="nav-close">
                 </ul>
 

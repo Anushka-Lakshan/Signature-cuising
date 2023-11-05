@@ -19,7 +19,7 @@
                     <div class="col-12 d-flex no-block align-items-center">
                         <h4 class="page-title">Customers</h4>
                         <div class="ms-auto text-end">
-                            <a type="button" href="/admin-dashboard?page=add-member" class="btn btn-success btn-lg text-white">
+                            <a type="button" href="<?= BASE_URL ?>/admin-dashboard?page=add-member" class="btn btn-success btn-lg text-white">
                                 <i class="fas fa-plus" style="margin-right: 5px;"></i>
                                 Add New Member
                             </a>

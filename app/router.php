@@ -2,6 +2,9 @@
 
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
+$uri = str_replace(BASE_URL, '', $uri);
+
+
 $routes = [
     '/' => 'controllers/index.php',
 

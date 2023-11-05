@@ -8,7 +8,7 @@
                 <div class="row">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/admin-dashboard?page=members">Admin & Staff</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/admin-dashboard?page=members">Admin & Staff</a></li>
                             <li class="breadcrumb-item active text-white" aria-current="page">
                                 Add New member
                             </li>
@@ -49,7 +49,7 @@
                                 </div>
 
                                 <script>
-                                    window.location = "/admin-dashboard?page=members";
+                                    window.location = "'.BASE_URL.'/admin-dashboard?page=members";
                                 </script>
                             ';
 
@@ -78,7 +78,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card">
-                            <form action="/admin-dashboard?page=add-member" method="POST" enctype="multipart/form-data">
+                            <form action="<?= BASE_URL ?>/admin-dashboard?page=add-member" method="POST" enctype="multipart/form-data">
                             <div class="card-body">
 
                                 <div class="form-group row">

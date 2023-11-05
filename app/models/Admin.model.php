@@ -114,7 +114,7 @@ class Admin
                 $_SESSION['admin_role'] = $check[0]['role'];
 
                 sweetAlert("Login success!", "welcome back " . $_SESSION['admin_name'], "success");
-                header("Location: /admin-dashboard");
+                header("Location: ".BASE_URL."/admin-dashboard");
                 exit();
             } else {
 
