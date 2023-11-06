@@ -23,6 +23,7 @@
 
     <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./assets/js/jquery.min.js"></script>
 
 </head>
 
@@ -63,7 +64,7 @@
 
                         <?php if (isset($_SESSION['Customer_Id'])): ?>
                             <a href="<?= BASE_URL ?>/my-account">My Account</a>
-                            <a href="#"  onclick="logout()">Logout</a>
+                            <a href="javascript:void(0)"  onclick="logout()">Logout</a>
 
                             <script>
 
@@ -94,7 +95,7 @@
                         <a href="/login">Log in</a> -->
                         <span>
                             <span id="cartBubble">
-                                2
+                                <?= get_cart_count() ?>
                             </span>
                             <a href="<?= BASE_URL ?>/cart">Cart</a>
                         </span>

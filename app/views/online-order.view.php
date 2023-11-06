@@ -41,128 +41,44 @@
                     <h3>Menu</h3>
                     <ul id="menu-cats">
                         <li class="active">All</li>
-                        <li data-cat="1">Offers</li>
-                        <li data-cat="2">Rice Specialities</li>
-                        <li data-cat="3">Noodles</li>
-                        <li data-cat="4">Kottu</li>
-                        <li data-cat="5">Pasta</li>
-                        <li data-cat="6">Desserts & Beverages</li>
+
+                        <?php
+                        foreach ($categories as $category) {
+                            echo '<li data-cat="' . $category['id'] . '">' . $category['name'] . '</li>';
+
+
+                        }
+                        ?>
+
                     </ul>
                 </div>
 
                 <div id="Food-items">
 
-                    <!-- item template -->
-                    <div class="food-item" data-itemcat="2">
-                        <div class="inner-div">
-                            <img src="./assets/Food-imgs/item (1).png" alt="">
-                            <div class="details">
-                                <p class="title">
-                                    Chicken Special Biriani
-                                </p>
-                                <p class="price">
-                                    Rs.1500
-                                </p>
+                    <?php
+                        foreach ($tableData as $item) {
+                            echo '<div class="food-item" data-itemcat="' . $item['category_id'] . '">
+                            <div class="inner-div">
+                                <img src="'. $item['img'] . '" alt="">
+                                <div class="details">
+                                    <p class="title">
+                                        ' . $item['name'] . '
+                                    </p>
+                                    <p class="price">
+                                        Rs. ' . $item['price'] . '
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <a href="#" class="btn-cart">Add to cart</a>
-                    </div>
+                            <a href="javascript:void(0)" class="btn-cart" onclick="addToCart('. $item['id'] .')">Add to cart</a>
+                        </div>';
+                        }
 
-                    <!-- item template -->
-                    <div class="food-item" data-itemcat="3">
-                        <div class="inner-div">
-                            <img src="./assets/Food-imgs/item (1).png" alt="">
-                            <div class="details">
-                                <p class="title">
-                                    Noodles
-                                </p>
-                                <p class="price">
-                                    Rs.1500
-                                </p>
-                            </div>
-                        </div>
-                        <a href="#" class="btn-cart">Add to cart</a>
-                    </div>
 
-                    <!-- item template -->
-                    <div class="food-item" data-itemcat="2">
-                        <div class="inner-div">
-                            <img src="./assets/Food-imgs/item (1).png" alt="">
-                            <div class="details">
-                                <p class="title">
-                                    Chicken Special Biriani
-                                </p>
-                                <p class="price">
-                                    Rs.1500
-                                </p>
-                            </div>
-                        </div>
-                        <a href="#" class="btn-cart">Add to cart</a>
-                    </div>
 
-                    <!-- item template -->
-                    <div class="food-item" data-itemcat="2">
-                        <div class="inner-div">
-                            <img src="./assets/Food-imgs/item (1).png" alt="">
-                            <div class="details">
-                                <p class="title">
-                                    Chicken Special Biriani
-                                </p>
-                                <p class="price">
-                                    Rs.1500
-                                </p>
-                            </div>
-                        </div>
-                        <a href="#" class="btn-cart">Add to cart</a>
-                    </div>
 
-                     <!-- item template -->
-                     <div class="food-item" data-itemcat="3">
-                        <div class="inner-div">
-                            <img src="./assets/Food-imgs/item (1).png" alt="">
-                            <div class="details">
-                                <p class="title">
-                                    Noodles new
-                                </p>
-                                <p class="price">
-                                    Rs.1500
-                                </p>
-                            </div>
-                        </div>
-                        <a href="#" class="btn-cart">Add to cart</a>
-                    </div>
+                    ?>
 
-                     <!-- item template -->
-                     <div class="food-item" data-itemcat="4">
-                        <div class="inner-div">
-                            <img src="./assets/Food-imgs/item (1).png" alt="">
-                            <div class="details">
-                                <p class="title">
-                                    Kottu
-                                </p>
-                                <p class="price">
-                                    Rs.1500
-                                </p>
-                            </div>
-                        </div>
-                        <a href="#" class="btn-cart">Add to cart</a>
-                    </div>
-
-                     <!-- item template -->
-                     <div class="food-item" data-itemcat="2">
-                        <div class="inner-div">
-                            <img src="./assets/Food-imgs/item (1).png" alt="">
-                            <div class="details">
-                                <p class="title">
-                                    Chicken Special Biriani
-                                </p>
-                                <p class="price">
-                                    Rs.1500
-                                </p>
-                            </div>
-                        </div>
-                        <a href="#" class="btn-cart">Add to cart</a>
-                    </div>
+                
 
 
                 </div>
@@ -257,6 +173,45 @@
 
 
     </script>
+
+
+    <!-- add to cart ajax request -->
+
+    <script>
+
+
+        function addToCart(id){
+
+            let product_id = id;
+            
+            
+            $.ajax({
+                url: '<?=BASE_URL?>/AJAX/addToCart',
+                type: 'POST',
+                data: { id: product_id },
+                success: function (respose_data) {
+                    // Check the response from the server
+                    if (respose_data.success) {
+                        Swal.fire('Success', respose_data.message, 'success').then(() => {
+                            location.reload();
+                           
+                        })
+                    } else {
+                        Swal.fire('Failed', 'something went wrong, please try again', 'error');
+                        console.log(respose_data);
+                    }
+                },
+                error: function (respose_data) {
+                    Swal.fire('Error', 'An error occurred while submitting the form', 'error');
+                    console.log(respose_data);
+                }
+            });
+
+
+        }
+
+    </script>
+
 
     <!-- main content ends here -->
     
