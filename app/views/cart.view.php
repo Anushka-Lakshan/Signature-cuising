@@ -16,12 +16,11 @@
         </div>
         <div class="container">
 
-            <?php show($_SESSION['cart']) ?>
             <div class="cart-row">
                 <div id="cart">
                     <div class="cart-head">
                         <h3>Cart</h3>
-                        <button>Remove All</button>
+                        <button onclick="removeAll()">Remove All</button>
                     </div>
                     <table id="cart-body">
 
@@ -226,6 +225,82 @@
             })
             
             
+        }
+
+
+        function updateQuantity(id, quantity){
+            let product_id = id;
+            let new_quantity = quantity;
+
+            if(new_quantity <= 0) {
+                Swal.fire('Failed', 'Minimum quantity is 1', 'warning');
+            }else if(new_quantity > 10){
+                Swal.fire('Failed', 'Maximum order quantity is 10', 'warning');
+            }else{
+
+
+                $.ajax({
+                    url: '<?=BASE_URL?>/AJAX/cartControll',
+                    type: 'POST',
+                    data: { id: product_id, quantity: new_quantity, action: 'update' },
+                    success: function (respose_data) {
+                        // Check the response from the server
+                        if (respose_data.success) {
+                            Swal.fire('Success', respose_data.message, 'success').then(() => {
+                                location.reload();
+                            })
+                        }else{
+                            Swal.fire('Failed', 'something went wrong, please try again', 'error');
+                            console.log(respose_data);
+                        }
+
+                    },
+                    error: function (respose_data) {
+                        Swal.fire('Error', 'An error occurred while submitting the form', 'error');
+                        console.log(respose_data);
+                    }
+                });
+
+            }
+        }
+
+        function removeAll(){
+            
+            Swal.fire({
+                title: 'Do you want to remove All items from cart?',
+                text: "warning!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ff6347',
+                cancelButtonColor: '#48c28d',
+                confirmButtonText: 'Yes, remove All!'
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Perform actions with the form data, e.g., make an AJAX request
+                    $.ajax({
+                        url: '<?=BASE_URL?>/AJAX/cartControll',
+                        type: 'POST',
+                        data: { action: 'removeAll' },
+                        success: function (respose_data) {
+                            // Check the response from the server
+                            if (respose_data.success) {
+                                Swal.fire('Success', respose_data.message, 'success').then(() => {
+                                    location.reload();
+                                })
+                            } else {
+                                Swal.fire('Failed', 'something went wrong, please try again', 'error');
+                                console.log(respose_data);
+                            }
+                        },
+                        error: function (respose_data) {
+                            Swal.fire('Error', 'An error occurred while submitting the form', 'error');
+                            console.log(respose_data);
+                        }
+                    });
+                }
+            })
+
         }
     </script>
 
