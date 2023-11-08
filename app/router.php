@@ -36,6 +36,7 @@ $routes = [
     // customer ajax routes
     '/AJAX/addToCart' => 'controllers/AJAX/addToCart.php',
     '/AJAX/cartControll' => 'controllers/AJAX/cartControll.php',
+    '/AJAX/reservation' => 'controllers/AJAX/reservation.php',
     
 ];
 

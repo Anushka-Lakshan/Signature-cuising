@@ -22,10 +22,24 @@
             </h2>
 
             <div class="row reservation-row">
-                <form action="" id="reservation-form" data-aos="fade-right">
+
+                <?php
+                    if($_SERVER['REQUEST_METHOD'] == "POST") {
+                        
+                        show($_POST);
+                    }
+
+                ?>
+
+                <form action="" method="POST" id="reservation-form" data-aos="fade-right">
                     <div class="form-col">
                         <label for="res-date">Date*</label>
-                        <input type="date" id="res-date" name="res-date" min="2023-10-02" max="2023-12-02" required>
+                        <input type="date"
+                         id="res-date"
+                          name="res-date"
+                           min="<?php echo date('Y-m-d'); ?>"
+                            max="<?php echo date('Y-m-d', strtotime('+60 days')); ?>"
+                             required>
                     </div>
                     <div class="form-col">
                         <label for="res-time">Time*</label>
@@ -33,7 +47,7 @@
                     </div>
                     <div class="form-col">
                         <label for="res-persons">Persons*</label>
-                        <input id="res-persons" type="number" min="0" max="12" required>
+                        <input id="res-persons" name="res-persons" type="number" min="0" max="12" required>
                     </div>
                     <div class="form-col">
                         <label for="res-email">Email*</label>
@@ -51,11 +65,13 @@
 
                     <div class="form-col">
                         <label for="res-branch">Branch*</label>
-                        <select name="res-branch" id="res-branch">
+                        <select name="res-branch" id="res-branch" required>
                             <option value="">select branch</option>
-                            <option value="1">Colombo</option>
-                            <option value="">Kandy</option>
-                            <option value="">Galle</option>
+
+                            <?php foreach ($branches as $branch) : ?>
+                                <option value="<?= $branch['Branch_Id'] ?>"><?= $branch['Name'] ?></option>
+                            <?php endforeach; ?>
+                            
                         </select>
                     </div>
                     <div class="form-full">
@@ -63,8 +79,69 @@
                         <textarea name="res-msg" id="res-msg"></textarea>
                     </div>
 
-                    <button class="form-full-btn btn-main">Check Availability</button>
+                    <button class="form-full-btn btn-main" type="submit">Check Availability</button>
                 </form>
+
+                <script>
+
+                    let formReady = false;
+                    $(document).ready(function(){
+                        $("#reservation-form").submit(function(event){
+
+                            if(!formReady){
+                                event.preventDefault();
+                            // console.log($('#reservation-form').serialize());
+
+                                $.ajax({
+                                    url: '<?=BASE_URL?>/AJAX/reservation',
+                                    type: 'post',
+                                    data: $('#reservation-form').serialize(),
+                                    success: function (respose_data) {
+                                        // Check the response from the server
+                                        if (respose_data.success) {
+
+                                            console.log(respose_data);
+
+                                            Swal.fire(
+                                                {
+                                                    title: respose_data.message,
+                                                    text: "Do you want to Confirm your Reservation?",
+                                                    icon: 'info',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#48c28d',
+                                                    cancelButtonColor: '#ff6347',
+                                                    confirmButtonText: 'Yes, Confirm reservation Now!',
+
+                                                }
+                                            )
+                                            .then((result) => {
+                                                if (result.isConfirmed) {
+                                                    formReady = true;
+                                                    $("#reservation-form").submit();   
+                                                
+                                                }
+                                            })
+
+                                        }else{
+                                            Swal.fire(respose_data.message, "Sorry! try again" , 'warning');
+                                            console.log(respose_data);
+                                        }
+
+                                    },
+                                    error: function (data) {
+                                        Swal.fire('Error', 'An error occurred while submitting the form', 'error');
+                                        console.log(data.responseText);
+                                    }
+                                });
+                            }
+                            
+
+                        });
+                    });
+
+
+
+                </script>
 
                 <img src="./assets/images/reserv-img.png" alt="" data-aos="fade-left">
             </div>

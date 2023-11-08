@@ -12,6 +12,16 @@ Class Branch
 
 	}
 
+    public static function get_branch_by_id($id)
+	{
+
+		$DB = Database::getInstance();
+
+        return $DB->read("select * from Branches where Branch_Id = :id limit 1", array('id' => $id));
+
+	}
+
+
 	public static function branch_exists($branchId){
 
 		$branches = self::get_all();

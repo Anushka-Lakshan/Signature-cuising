@@ -18,6 +18,13 @@ class Order
         return $DB->read("select * from orders where id = :id limit 1", array('id' => $id));
     }
 
+    public static function get_item_by_customer($id)
+    {
+        $DB = Database::getInstance();
+
+        return $DB->read("SELECT orders.*, branches.Name AS 'branch_name' FROM orders INNER JOIN branches ON orders.branch_id = branches.Branch_Id WHERE orders.customer_id = :id ORDER BY orders.id DESC", array('id' => $id));
+    }
+
     public static function add_order($cartData, $location = [])
     {
         $DB = Database::getInstance();

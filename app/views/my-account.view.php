@@ -40,8 +40,9 @@
                                     <div class="col col-3">Total</div>
                                     <div class="col col-4">Date & Time</div>
                                     <div class="col col-5">Order Status</div>
+                                    <div class="col col-6">branch</div>
                                 </li>
-                                <li class="table-row">
+                                <!-- <li class="table-row">
                                     <div class="col col-1" data-label="Order No">42235</div>
                                     <div class="col col-2" data-label="Items">
 
@@ -61,51 +62,38 @@
                                     <div class="col col-3" data-label="Total">$350</div>
                                     <div class="col col-4" data-label="Date & Time">2023/12/11 16:55</div>
                                     <div class="col col-5" data-label="Order status">pending</div>
-                                </li>
+                                    <div class="col col-6" data-label="branch">Colombo</div>
+                                </li> -->
 
-                                <li class="table-row">
-                                    <div class="col col-1" data-label="Order No">42235</div>
-                                    <div class="col col-2" data-label="Items">
+                                <?php
+                                    foreach ($orderData as $order) {
+                                    
+                                        echo '<li class="table-row">';
+                                        echo '<div class="col col-1" data-label="Order No">' . $order['id'] . '</div>';
+                                        echo '<div class="col col-2" data-label="Items">';
+                                    
+                                        $orderDetails = json_decode($order['order_details'], true);
+                                    
+                                        foreach ($orderDetails['items'] as $item) {
+                                            echo '<div class="order-t-i">';
+                                            echo '<p>' . $item['name'] . '</p><span>X ' . $item['quantity'] . '</span>';
+                                            echo '</div>';
+                                        }
+                                    
+                                        echo '</div>';
+                                        echo '<div class="col col-3" data-label="Total">Rs.' . $orderDetails['total'] . '</div>';
+                                        echo '<div class="col col-4" data-label="Date & Time">' . $order['ordered_dt'] . '</div>';
+                                        echo '<div class="col col-5" data-label="Order status">' . ucfirst($order['status']) . '</div>';
+                                        echo '<div class="col col-6" data-label="Branch">' . $order['branch_name'] . '</div>';
+                                        echo '</li>';
+                                    }
 
-                                        <div>
-                                            <div class="order-t-i">
-                                                <p>Chicken Biriyani</p><span>X 2</span>
-                                            </div>
-                                            <div class="order-t-i">
-                                                <p>Chicken Noodles</p><span>X 1</span>
-                                            </div>
-                                            <div class="order-t-i">
-                                                <p>Mix Biriyani</p><span>X 2</span>
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                    <div class="col col-3" data-label="Total">$350</div>
-                                    <div class="col col-4" data-label="Date & Time">2023/12/11 16:55</div>
-                                    <div class="col col-5" data-label="Order status">pending</div>
-                                </li>
 
-                                <li class="table-row">
-                                    <div class="col col-1" data-label="Order No">42235</div>
-                                    <div class="col col-2" data-label="Items">
 
-                                        <div>
-                                            <div class="order-t-i">
-                                                <p>Chicken Biriyani</p><span>X 2</span>
-                                            </div>
-                                            <div class="order-t-i">
-                                                <p>Chicken Noodles</p><span>X 1</span>
-                                            </div>
-                                            <div class="order-t-i">
-                                                <p>Mix Biriyani</p><span>X 2</span>
-                                            </div>
-                                        </div>
+                                ?>
 
-                                    </div>
-                                    <div class="col col-3" data-label="Total">$350</div>
-                                    <div class="col col-4" data-label="Date & Time">2023/12/11 16:55</div>
-                                    <div class="col col-5" data-label="Order status">pending</div>
-                                </li>
+                                
 
                                 
 
@@ -132,7 +120,7 @@
                                     <div class="col col-7">Branch</div>
                                     <div class="col col-8">Status</div>
                                 </li>
-                                <li class="table-row">
+                                <!-- <li class="table-row">
                                     <div class="col col-1" data-label="Reser. No">42235</div>
                                     <div class="col col-2" data-label="People">6</div>
                                     <div class="col col-3" data-label="Date">2023/12/11</div>
@@ -141,29 +129,25 @@
                                     <div class="col col-6" data-label="Phone">076 611661104</div>
                                     <div class="col col-7" data-label="Branch">Colombo</div>
                                     <div class="col col-8" data-label="Status">pending</div>
-                                </li>
-                                <li class="table-row">
-                                    <div class="col col-1" data-label="Reser. No">42235</div>
-                                    <div class="col col-2" data-label="People">6</div>
-                                    <div class="col col-3" data-label="Date">2023/12/11</div>
-                                    <div class="col col-4" data-label="Time">16:55</div>
-                                    <div class="col col-5" data-label="Name">Anushka Lakshan</div>
-                                    <div class="col col-6" data-label="Phone">076 611661104</div>
-                                    <div class="col col-7" data-label="Branch">Colombo</div>
-                                    <div class="col col-8" data-label="Status">pending</div>
-                                </li>
-                                <li class="table-row">
-                                    <div class="col col-1" data-label="Reser. No">42235</div>
-                                    <div class="col col-2" data-label="People">6</div>
-                                    <div class="col col-3" data-label="Date">2023/12/11</div>
-                                    <div class="col col-4" data-label="Time">16:55</div>
-                                    <div class="col col-5" data-label="Name">Anushka Lakshan</div>
-                                    <div class="col col-6" data-label="Phone">076 611661104</div>
-                                    <div class="col col-7" data-label="Branch">Colombo</div>
-                                    <div class="col col-8" data-label="Status">pending</div>
-                                </li>
+                                </li> -->
 
-                                
+
+                                <?php
+                                    foreach ($reservationData as $reservation) {
+                                        echo '<li class="table-row">';
+                                        echo '<div class="col col-1" data-label="Reser. No">' . $reservation['id'] . '</div>';
+                                        echo '<div class="col col-2" data-label="People">' . $reservation['persons'] . '</div>';
+                                        echo '<div class="col col-3" data-label="Date">' . date('Y/m/d', strtotime($reservation['date'])) . '</div>';
+                                        echo '<div class="col col-4" data-label="Time">' . date('H:i', strtotime($reservation['time'])) . '</div>';
+                                        echo '<div class="col col-5" data-label="Name">' . $reservation['name'] . '</div>';
+                                        echo '<div class="col col-6" data-label="Phone">' . $reservation['phone'] . '</div>';
+                                        echo '<div class="col col-7" data-label="Branch">' . $reservation['branch_name'] ;// You may replace this with the actual branch name
+                                        echo '</div>';
+                                        echo '<div class="col col-8" data-label="Status">' . ucfirst($reservation['status']) . '</div>';
+                                        echo '</li>';
+                                    }
+
+                                ?>
 
                             </ul>
                         </div>
@@ -171,6 +155,8 @@
                     <div class="panel" id="t-p-3">
                         <h2>Edit Account</h2>
                         <p class="t-sub">Change Your Account Details</p>
+
+                        <?php show($customerData); ?>
 
                         <form id="register" action="" method="post" data-aos="fade-right">
 
