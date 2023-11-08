@@ -20,6 +20,7 @@ $routes = [
     '/cart' => 'controllers/cart.php',
     '/my-account' => 'controllers/my-account.php',
     '/logout' => 'controllers/logout.php',
+    '/checkout' => 'controllers/checkout.php',
 
     // admin routes
     '/admin-login' => 'controllers/admin/admin-login.php',

@@ -21,8 +21,19 @@
                 Stay touch with Us
             </h2>
 
+            <?php 
+                if(isset($errors) && !empty($errors)) {
+
+                    
+                    foreach($errors as $error) {
+                        echo "<p class='error'>$error</p>";
+                    }
+                }
+
+            ?>
+
             <div class="row reservation-row">
-                <form action="" id="reservation-form" data-aos="fade-right">
+                <form action="" id="reservation-form" data-aos="fade-right" method="POST">
 
                     <div class="form-col">
                         <label for="full-name">Full Name*</label>
@@ -36,11 +47,12 @@
 
 
                     <div class="form-full">
-                        <label for="res-msg">Message</label>
+                        <label for="con-msg">Message</label>
                         <textarea name="res-msg" id="res-msg" required></textarea>
                     </div>
-
-                    <button class="form-full-btn btn-main">Submit</button>
+                    
+                    <!-- <input type="submit" value="Submit" class="form-full-btn btn" name="submit"> -->
+                    <button class="form-full-btn btn-main" type="submit" name="submit">Submit</button>
                 </form>
 
                 <img src="./assets/images/contact-img.jpg" alt="" data-aos="fade-left">
@@ -53,56 +65,28 @@
 
             <div id="branches">
 
-                <div class="branch-box">
-                    <div class="details">
-                        <h5>Branch name</h5>
-                        <p class="title">Address:</p>
-                        <p>
-                            5/18, Maaragama,  Colombo, wester province, Sri lanka
-                        </p>
-                        <p class="title">Tel no:</p>
-                        <p>+94 76 6116604, 011 2088912</p>
-                    </div>
-                    <div class="map">
-                        <iframe width="250" height="220" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            src="https://maps.google.com/maps?q=6.924482,79.861913&hl=es&z=14&amp;output=embed">
-                        </iframe>
-                    </div>
-                </div>
+            <?php
 
-                <div class="branch-box">
+                foreach($branches as $branch) {
+                    echo '<div class="branch-box">
                     <div class="details">
-                        <h5>Branch name</h5>
+                        <h5>'. $branch['Name'] .'</h5>
                         <p class="title">Address:</p>
                         <p>
-                            5/18, Maaragama,  Colombo, wester province, Sri lanka
+                            '. $branch['Address'] .'
                         </p>
                         <p class="title">Tel no:</p>
-                        <p>+94 76 6116604, 011 2088912</p>
+                        <p>'. $branch['Tel_no'] .'</p>
                     </div>
                     <div class="map">
                         <iframe width="250" height="220" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            src="https://maps.google.com/maps?q=6.924482,79.861913&hl=es&z=14&amp;output=embed">
+                            src="https://maps.google.com/maps?q='.$branch['Latitude'].','.$branch['Longitude'].'&hl=es&z=14&amp;output=embed">
                         </iframe>
                     </div>
-                </div>
+                </div>';
+                }
 
-                <div class="branch-box">
-                    <div class="details">
-                        <h5>Branch name</h5>
-                        <p class="title">Address:</p>
-                        <p>
-                            5/18, Maaragama,  Colombo, wester province, Sri lanka
-                        </p>
-                        <p class="title">Tel no:</p>
-                        <p>+94 76 6116604, 011 2088912</p>
-                    </div>
-                    <div class="map">
-                        <iframe width="250" height="220" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            src="https://maps.google.com/maps?q=6.924482,79.861913&hl=es&z=14&amp;output=embed">
-                        </iframe>
-                    </div>
-                </div>
+            ?>
 
                 
 

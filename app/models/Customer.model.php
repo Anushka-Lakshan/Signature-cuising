@@ -172,5 +172,11 @@ Class Customer
         }
     }
 
+    public static function get_customer_by_id($id)
+    {
+        $DB = Database::getInstance();
+
+        return $DB->read("select * from customers where Customer_Id = :id limit 1", array('id' => $id));
+    }
 	
 }

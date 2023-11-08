@@ -310,7 +310,8 @@ main {
     font-weight: 500;
 }
 
-.form-col>input {
+.form-col>input,
+.form-full>input {
     width: 100%;
     padding: 5px 10px;
     border-radius: 3px;
@@ -322,9 +323,19 @@ main {
     width: 100%;
     padding: 5px 10px;
 }
+#ord-branch {
+    width: 100%;
+    padding: 5px 10px;
+}
+
+#payment{
+    width: 100%;
+    padding: 5px 10px;
+}
 
 form>.form-full {
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .form-full>label {

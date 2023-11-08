@@ -178,7 +178,7 @@
                         </tr>
 
                     </table>
-                    <a href="#" class="btn-main form-full-btn">Checkout</a>
+                    <a href="<?= BASE_URL ?>/checkout" class="btn-main form-full-btn">Checkout</a>
                 </div>
             </div>
         </div>
