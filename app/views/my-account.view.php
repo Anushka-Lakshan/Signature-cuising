@@ -14,16 +14,39 @@
             </div>
         </div>
         <div class="container">
+
+            <?php
+                if(is_array($errors) && count($errors) > 0) {
+                    echo '<div class="error">';
+                    foreach ($errors as $error) {
+                        echo '<p>' . $error . '</p>';
+                    }
+                    echo '</div>';
+                }
+
+
+            ?>
+
+            <style>
+                .error {
+                    color: red;
+                    font-size: 14px;
+                    margin-bottom: 20px;
+                }
+            </style>
+
             <div class="tabs">
 
                 <input type="radio" name="tab-ctrl" id="tab-1" class="tab-ctrl" checked>
                 <input type="radio" name="tab-ctrl" id="tab-2" class="tab-ctrl">
                 <input type="radio" name="tab-ctrl" id="tab-3" class="tab-ctrl">
+                <input type="radio" name="tab-ctrl" id="tab-4" class="tab-ctrl">
 
                 <div class="tab-labels">
                     <label for="tab-1">My Orders</label>
                     <label for="tab-2">Reservations</label>
                     <label for="tab-3">Edit Account</label>
+                    <label for="tab-4">Change Password</label>
                 </div>
 
                 <div class="tab-panels">
@@ -93,12 +116,6 @@
 
                                 ?>
 
-                                
-
-                                
-
-
-
                             </ul>
                         </div>
 
@@ -156,55 +173,96 @@
                         <h2>Edit Account</h2>
                         <p class="t-sub">Change Your Account Details</p>
 
-                        <?php show($customerData); ?>
+                        
 
                         <form id="register" action="" method="post" data-aos="fade-right">
 
                             <div class="form-col">
                                 <label for="reg-name">Full Name*</label>
-                                <input type="text" name="reg-name" id="reg-name" required>
+                                <input type="text" name="reg-name" id="reg-name" 
+                                value="<?= $customerData[0]['Name'] ?>"
+                                required>
                             </div>
             
                             <div class="form-col">
                                 <label for="reg-email">Email*</label>
-                                <input type="email" name="reg-email" id="reg-email" required>
+                                <input type="email" name="reg-email" id="reg-email" 
+                                value="<?= $customerData[0]['Email'] ?>"
+                                required>
                             </div>
                             
                             <div class="form-col">
                                 <label for="reg-phone">Phone*</label>
-                                <input type="text" name="reg-phone" id="reg-phone" required>
+                                <input type="text" name="reg-phone" id="reg-phone" 
+                                value="<?= $customerData[0]['Phone'] ?>"
+                                required>
                             </div>
             
                             <div class="form-col">
                                 <label for="reg-dob">Date of Birth*</label>
-                                <input type="date" name="reg-dob" id="reg-dob" required>
-                            </div>
-            
-                            <div class="form-col">
-                                <label for="reg-pass">Password*</label>
-                                <input type="password" name="reg-pass" id="reg-pass" required>
-                            </div>
-            
-                            <div class="form-col">
-                                <label for="reg-pass2">Confirm Password*</label>
-                                <input type="password" name="reg-pass" id="reg-pass2" required>
+                                <input type="date" name="reg-dob" id="reg-dob" 
+                                value="<?= $customerData[0]['DOB'] ?>"
+                                required>
                             </div>
             
                             <div class="form-col">
                                 <label for="res-branch">Prepared Branch*</label>
                                 <select name="res-branch" id="res-branch">
                                     <option value="">select branch</option>
-                                    <option value="1">Colombo</option>
+                                    <?php
+                                        foreach ($branchData as $branch) {
+                                            echo '<option value="' . $branch['Branch_Id'] . '" '. ($branch['Branch_Id'] == $customerData[0]['PreparedBranch'] ? 'selected' : '') .'>' . $branch['Name'] . '</option>';
+                                        }
+                                    ?>
+                                    <!-- <option value="1">Colombo</option>
                                     <option value="">Kandy</option>
-                                    <option value="">Galle</option>
+                                    <option value="">Galle</option> -->
                                 </select>
                             </div>
+
+                            <div class="form-col">
+                                <label for="NIC">NIC*</label>
+                                <input type="text" name="NIC" id="NIC" 
+                                value="<?= $customerData[0]['NIC'] ?>"
+                                required>
+                            </div>
+
                             <div class="form-full">
-                                <label for="res-msg">Address*</label>
-                                <textarea name="res-msg" id="res-msg"></textarea>
+                                <label for="Address">Address*</label>
+                                <textarea name="Address" id="Address"><?= $customerData[0]['Address'] ?></textarea>
                             </div>
             
-                            <button class="form-full-btn btn-main">Update Account Details</button>
+                            <button class="form-full-btn btn-main" type="submit" name="update">Update Account Details</button>
+        
+                        </form>
+                    </div>
+                    <div class="panel" id="t-p-4">
+                        <h2>Change Password</h2>
+                        <p class="t-sub">Change Your Account Password</p>
+
+                        <form id="register" action="" method="post" data-aos="fade-right">
+
+                            <div class="form-full">
+                                <label for="current_pass">Current Password*</label>
+                                <input type="password" name="current_pass" id="current_pass" 
+                                required>
+                            </div>
+            
+                            <div class="form-col">
+                                <label for="new_pass">New Password*</label>
+                                <input type="password" name="new_pass" id="new_pass" 
+                                required>
+                            </div>
+                            
+                            <div class="form-col">
+                                <label for="confirm_pass">Confirm New Password*</label>
+                                <input type="password" name="confirm_pass" id="confirm_pass" 
+                                required>
+                            </div>
+            
+                            
+            
+                            <button class="form-full-btn btn-main" type="submit" name="change_pass">Update Password</button>
         
                         </form>
                     </div>
