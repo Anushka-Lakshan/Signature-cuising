@@ -18,6 +18,7 @@
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
                         <h4 class="page-title">Categories</h4>
+                        <?php if (($_SESSION['admin_role'] == 'admin')) { ?>
                         <div class="ms-auto text-end">
                             <a type="button" href="javascript:void(0)" onclick="Add_category()" class="btn btn-success btn-lg text-white">
                                 <i class="fas fa-plus" style="margin-right: 5px;"></i>
@@ -25,6 +26,7 @@
                             </a>
 
                         </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -107,10 +109,12 @@
                                         <tr>
                                             <td><?= $value['id'] ?></td>
                                             <td><?= $value['name'] ?></td>
+                                            <?php if (($_SESSION['admin_role'] == 'admin')) { ?>
                                             <td>
                                                 <a href="#" class="btn btn-primary" onclick="Edit_category(<?= $value['id'] ?>, '<?= $value['name'] ?>')">Edit</a>
                                                 <a href="#" class="btn btn-danger" onclick="Delete_category(<?= $value['id'] ?>)">Delete</a>
                                             </td>
+                                            <?php }else{ echo "<td>only view</td>";} ?>
                                         </tr>
                                     <?php } ?>
 

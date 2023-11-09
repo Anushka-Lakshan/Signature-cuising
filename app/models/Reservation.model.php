@@ -8,7 +8,8 @@ Class Reservation
 	{
 
 		$DB = Database::getInstance();
-		return $DB->read("select * from reservations order by id desc");
+		return $DB->read("select reservations.*,branches.Name AS 'branch_name' from reservations inner join 
+        branches on reservations.Branch_Id = branches.Branch_Id order by id desc");
 
 	}
 
@@ -17,7 +18,8 @@ Class Reservation
 
 		$DB = Database::getInstance();
 
-        return $DB->read("select * from reservations where id = :id limit 1", array('id' => $id));
+        return $DB->read("select reservations.*,branches.Name AS 'branch_name' from reservations
+         inner join branches on reservations.Branch_Id = branches.Branch_Id where reservations.id = :id limit 1", array('id' => $id));
 
 	}
 

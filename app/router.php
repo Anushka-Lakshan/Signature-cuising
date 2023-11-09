@@ -37,6 +37,7 @@ $routes = [
     '/AJAX/addToCart' => 'controllers/AJAX/addToCart.php',
     '/AJAX/cartControll' => 'controllers/AJAX/cartControll.php',
     '/AJAX/reservation' => 'controllers/AJAX/reservation.php',
+    '/AJAX/search' => 'controllers/AJAX/search.php',
     
 ];
 

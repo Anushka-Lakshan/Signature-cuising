@@ -280,4 +280,26 @@ class Food
             return false;
         }
     }
+
+    public static function searchFoodByName($searchText) {
+        $DB = Database::getInstance();
+    
+        $errors = array();
+    
+        
+    
+        if (count($errors) > 0) {
+            return $errors;
+        } else {
+            // Use prepared statements to prevent SQL injection
+            $searchText = "%$searchText%";
+            $query = "SELECT * FROM products WHERE name LIKE :searchText";
+            $data = array('searchText' => $searchText);
+    
+            $results = $DB->read($query, $data);
+    
+            return $results;
+        }
+    }
+    
 }

@@ -1,38 +1,48 @@
+<?php if (!($_SESSION['admin_role'] == 'admin')) {
+        echo '<div class="page-wrapper mb-10">
+        <div class="alert alert-danger mb-10" role="alert">
+        <h2>You don\'t have permission to access this page</h2>
+        </div>
+        </div>';
 
-<div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <div class="page-breadcrumb bg-dark text-white">
-                <div class="row">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/admin-dashboard?page=food-items">Food-items</a></li>
-                            <li class="breadcrumb-item active text-white" aria-current="page">
-                                Add New Item
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
-                <div class="row">
-                    <div class="col-12 d-flex no-block align-items-center mb-3">
-                        <h4 class="page-title">Add New Food Item</h4>
+        
+}else {
 
-                    </div>
+    ?>
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb bg-dark text-white">
+            <div class="row">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/admin-dashboard?page=food-items">Food-items</a></li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">
+                            Add New Item
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center mb-3">
+                    <h4 class="page-title">Add New Food Item</h4>
+
                 </div>
             </div>
-            
-            <?php
-                if(isset($_POST['add-food-item'])) {
+        </div>
 
-                    include "app/models/Food.model.php";
+        <?php
+        if (isset($_POST['add-food-item'])) {
 
-                    $food = new Food();
+            include "app/models/Food.model.php";
 
-                    $errors = $food::add_item();
+            $food = new Food();
 
-                    if($errors === array('success' => true)) {
-                        echo '
+            $errors = $food::add_item();
+
+            if ($errors === array('success' => true)) {
+                echo '
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     <strong>Success!</strong> Item Added Successfully
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -41,98 +51,96 @@
                                 <script>
                                 console.log("Before swal");
                                 swal("Success!", "Item Added Successfully", "success").then(function() {
-                                    window.location = "'.BASE_URL.'/admin-dashboard?page=food-items";
+                                    window.location = "' . BASE_URL . '/admin-dashboard?page=food-items";
                                 });
                                 
                                 </script>
                             ';
 
-                        unset($_POST);
-                    }
-                    else if(is_array($errors) && count($errors) > 0) {
-                            echo'
+                unset($_POST);
+            } else if (is_array($errors) && count($errors) > 0) {
+                echo '
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 ';
-                            foreach($errors as $error) {
-                                
-                                echo $error . "<br>";
-                            }
-                            echo '
+                foreach ($errors as $error) {
+
+                    echo $error . "<br>";
+                }
+                echo '
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
                                 ';
-                    }
+            }
 
-                    // $data = array(
-                    //     'name' => $_POST['Iname'],
-                    //     'price' => $_POST['Price'],
-                    //     'description' => $_POST['Description'],
-                    //     'category' => $_POST['Category'],
+            // $data = array(
+            //     'name' => $_POST['Iname'],
+            //     'price' => $_POST['Price'],
+            //     'description' => $_POST['Description'],
+            //     'category' => $_POST['Category'],
 
-                    // );
+            // );
 
-                    // include "app/models/Food.model.php";
+            // include "app/models/Food.model.php";
 
-                    // $admin = new Admin();
+            // $admin = new Admin();
 
-                    // $errors = $admin::Add_member($data);
+            // $errors = $admin::Add_member($data);
 
-                    // if($errors === array('success' => true)) {
-                        
-                    //     echo '
-                    //             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    //                 <strong>Success!</strong> Member Added Successfully
-                    //                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    //             </div>
+            // if($errors === array('success' => true)) {
 
-                    //             <script>
-                    //                 window.location = "/admin-dashboard?page=members";
-                    //             </script>
-                    //         ';
+            //     echo '
+            //             <div class="alert alert-success alert-dismissible fade show" role="alert">
+            //                 <strong>Success!</strong> Member Added Successfully
+            //                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            //             </div>
 
-                    //     unset($_POST);
+            //             <script>
+            //                 window.location = "/admin-dashboard?page=members";
+            //             </script>
+            //         ';
 
-                    // }
-                    // else if(is_array($errors) && count($errors) > 0) {
-                    //     echo'
-                    //             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    //         ';
-                    //     foreach($errors as $error) {
-                            
-                    //         echo $error . "<br>";
-                    //     }
-                    //     echo '
-                    //             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    //             </div>
-                    //         ';
-                    // }
+            //     unset($_POST);
 
-                }
-            ?>
+            // }
+            // else if(is_array($errors) && count($errors) > 0) {
+            //     echo'
+            //             <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            //         ';
+            //     foreach($errors as $error) {
 
-           <?php
-                include "app/models/Category.model.php";
+            //         echo $error . "<br>";
+            //     }
+            //     echo '
+            //             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            //             </div>
+            //         ';
+            // }
 
-                $Category = new Category();
+        }
+        ?>
 
-                $allCategories = $Category::get_all();
-           ?>
+        <?php
+        include "app/models/Category.model.php";
 
-            <div class="container-fluid">
+        $Category = new Category();
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
+        $allCategories = $Category::get_all();
+        ?>
 
-                            <form action="<?= BASE_URL ?>/admin-dashboard?page=add-food-item" method="POST" enctype="multipart/form-data">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+
+                        <form action="<?= BASE_URL ?>/admin-dashboard?page=add-food-item" method="POST" enctype="multipart/form-data">
                             <div class="card-body">
 
                                 <div class="form-group row">
                                     <label for="Iname" class="col-sm-3 text-end control-label col-form-label">Item
                                         Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="name" id="Iname"
-                                            placeholder="Item name Here" required>
+                                        <input type="text" class="form-control" name="name" id="Iname" placeholder="Item name Here" required>
                                     </div>
                                 </div>
 
@@ -144,24 +152,22 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1">Rs.</span>
                                             </div>
-                                            <input type="number" class="form-control" placeholder="price" id="Price"
-                                                name="price" required>
+                                            <input type="number" class="form-control" placeholder="price" id="Price" name="price" required>
                                         </div>
                                     </div>
                                 </div>
 
 
                                 <div class="form-group row">
-                                    <label for="Cat"
-                                        class="col-sm-3 text-end control-label col-form-label">Category</label>
+                                    <label for="Cat" class="col-sm-3 text-end control-label col-form-label">Category</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" id="cat" name="cat">
                                             <option value=""> Select </option>
 
-                                            <?php 
-                                                foreach ($allCategories as $key => $value) {
-                                                    echo "<option value='" . $value['id'] . "'>" . $value['name'] . "</option>";
-                                                }
+                                            <?php
+                                            foreach ($allCategories as $key => $value) {
+                                                echo "<option value='" . $value['id'] . "'>" . $value['name'] . "</option>";
+                                            }
                                             ?>
                                         </select>
                                     </div>
@@ -169,19 +175,16 @@
 
 
                                 <div class="form-group row">
-                                    <label for="email1"
-                                        class="col-sm-3 text-end control-label col-form-label">Visibility</label>
+                                    <label for="email1" class="col-sm-3 text-end control-label col-form-label">Visibility</label>
                                     <div class="col-sm-9">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="Visibility"
-                                                id="exampleRadios1" value="true" checked>
+                                            <input class="form-check-input" type="radio" name="Visibility" id="exampleRadios1" value="true" checked>
                                             <label class="form-check-label" for="exampleRadios1">
                                                 Visible
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="Visibility"
-                                                id="exampleRadios2" value="false">
+                                            <input class="form-check-input" type="radio" name="Visibility" id="exampleRadios2" value="false">
                                             <label class="form-check-label" for="exampleRadios2">
                                                 Hidden
                                             </label>
@@ -190,12 +193,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="custom-file-input"
-                                        class="col-sm-3 text-end control-label col-form-label">Item Image</label>
+                                    <label for="custom-file-input" class="col-sm-3 text-end control-label col-form-label">Item Image</label>
                                     <div class="col-sm-9">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile"
-                                                accept="image/png, image/jpeg, image/jpg" name="image" required>
+                                            <input type="file" class="custom-file-input" id="customFile" accept="image/png, image/jpeg, image/jpg" name="image" required>
                                             <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                         <!-- show boostrap message (only accepted Jpg,jpeg and png files and must be less than 2mb) -->
@@ -204,8 +205,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="cono1"
-                                        class="col-sm-3 text-end control-label col-form-label">Description</label>
+                                    <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Description</label>
                                     <div class="col-sm-9">
                                         <textarea class="form-control" name="Desc" style="height: 65px;" required></textarea>
                                     </div>
@@ -219,26 +219,29 @@
 
                                 </div>
                             </div>
-                            </form>
-                        </div>
+                        </form>
                     </div>
                 </div>
-
-
-
-                <!--              End-->
-
             </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <footer class="footer text-center">
-                Designed and Developed by: Anushka Lakshan <i class="fa fa-heart"></i>
-            </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
+
+
+
+            <!--              End-->
+
         </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer text-center">
+            Designed and Developed by: Anushka Lakshan <i class="fa fa-heart"></i>
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+
+    <?php } ?>
+

@@ -6,7 +6,7 @@
         <div class="row">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/admin-dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/admin-dashboard">Dashboard</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
                         Orders
                     </li>
@@ -28,6 +28,16 @@
     <!-- ============================================================== -->
     <div class="container-fluid">
 
+        <?php
+            include("app/models/Order.model.php");
+
+            $order = new Order();
+            $Allorders = $order::get_all();
+
+            // show($Allorders);
+
+        ?>
+
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">All Orders</h5>
@@ -47,7 +57,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <!-- <tr>
                                 <td>2</td>
                                 <td>Anushka Lakshan</td>
                                 <td>Colombo</td>
@@ -119,7 +129,59 @@
 
 
                                 </td>
-                            </tr>
+                            </tr> -->
+
+                            <?php foreach ($Allorders as $order): ?>
+            <tr>
+                <td><?= $order['id'] ?></td>
+                <td><?= $order['customer_name'] ?></td>
+                <td><?= $order['branch_name'] ?></td>
+                <td>
+                    <?php
+                        $orderDetails = json_decode($order['order_details'], true);
+                        foreach ($orderDetails['items'] as $item) {
+                            echo '<div class="d-flex no-block">';
+                            echo '<span>' . $item['name'] . '</span>';
+                            echo '<span class="ms-auto text-end">X ' . $item['quantity'] . '</span>';
+                            echo '</div>';
+                        }
+                        ?>
+                    </td>
+                    <td>Rs.<?= $orderDetails['total'] ?></td>
+                    <td><?= $order['ordered_dt'] ?></td>
+                    <td>
+                        <?php
+                        $statusClass = '';
+                        if ($order['status'] === 'Pending') {
+                            $statusClass = 'text-warning';
+                        } elseif ($order['status'] === 'Preparing') {
+                            $statusClass = 'text-danger';
+                        }
+                        echo '<span class="' . $statusClass . '"><i class="far fa-clock me-1"></i> ' . $order['status'] . '</span>';
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        echo ' ' . $order['payment_method'];
+                        ?>
+                    </td>
+                    <td>
+                        <a href="<?= BASE_URL ?>/admin-dashboard?page=view-order&id=<?= $order['id'] ?>" class="btn btn-success">View</a>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Change Status
+                            </button>
+                            <div class="dropdown-menu" style="margin: 0px;">
+                                <a class="dropdown-item" href="#">Preparing</a>
+                                <a class="dropdown-item" href="#">Delivering</a>
+                                <a class="dropdown-item" href="#">Completed</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="#">Cancelled</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
 
 
 

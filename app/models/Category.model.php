@@ -78,5 +78,21 @@ Class Category
         }
     }
 
+    public static function searchCategoriesByName($searchText) {
+        $DB = Database::getInstance();
+    
+        
+            // Use prepared statements to prevent SQL injection
+        $searchText = "%$searchText%";
+        $query = "SELECT * FROM categories WHERE name LIKE :searchText";
+        $data = array('searchText' => $searchText);
+
+        $results = $DB->read($query, $data);
+
+        return $results;
+        
+    }
+    
+
 	
 }

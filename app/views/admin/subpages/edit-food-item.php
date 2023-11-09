@@ -1,3 +1,15 @@
+<?php if (!($_SESSION['admin_role'] == 'admin')) {
+        echo '<div class="page-wrapper mb-10">
+        <div class="alert alert-danger mb-10" role="alert">
+        <h2>You don\'t have permission to access this page</h2>
+        </div>
+        </div>';
+
+        
+}else {
+
+    ?>
+
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -234,3 +246,5 @@
     <!-- End footer -->
     <!-- ============================================================== -->
 </div>
+
+<?php } ?>

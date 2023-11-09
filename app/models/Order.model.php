@@ -4,18 +4,20 @@ class Order
 {
 
 
-    public static function get_all($cartData,$location = [])
+    public static function get_all()
     {
 
         $DB = Database::getInstance();
-        return $DB->read("select * from orders order by id asc");
+        return $DB->read("select orders.*, branches.Name AS 'branch_name', customers.Name AS 'customer_name' from orders
+        inner join branches on orders.branch_id = branches.Branch_Id inner join customers on orders.customer_id = customers.Customer_Id order by orders.id desc");
     }
 
     public static function get_item_by_id($id)
     {
         $DB = Database::getInstance();
 
-        return $DB->read("select * from orders where id = :id limit 1", array('id' => $id));
+        return $DB->read("select orders.*, branches.Name AS 'branch_name', customers.Name AS 'customer_name' from orders
+        inner join branches on orders.branch_id = branches.Branch_Id inner join customers on orders.customer_id = customers.Customer_Id where orders.id = :id limit 1", array('id' => $id));
     }
 
     public static function get_item_by_customer($id)

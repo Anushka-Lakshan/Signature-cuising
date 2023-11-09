@@ -80,7 +80,7 @@
                     </div>
                     <div class="map">
                         <iframe width="250" height="220" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            src="https://maps.google.com/maps?q='.$branch['Latitude'].','.$branch['Longitude'].'&hl=es&z=14&amp;output=embed">
+                            src="https://maps.google.com/maps?q='.$branch['Latitude'].','.$branch['Longitude'].'&language=en&z=14&amp;output=embed">
                         </iframe>
                     </div>
                 </div>';

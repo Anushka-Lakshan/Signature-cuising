@@ -147,58 +147,45 @@
             <p>Search Results</p>
             <hr/>
             <div class="resultArea">
-                <div class="resultColumn">
-                    <p>Food items</p>
-                    <div class="food-result">
-                        <img src="./assets/images/rice.jpg" alt="">
-                        <div>
-                            <p class="title">
-                                <a href="#">Chicken Special Biriyani</a>
-                            </p>
-                            <p class="price">Rs.1500</p>
-                        </div>
-                    </div>
-
-                    <div class="food-result">
-                        <img src="./assets/images/rice.jpg" alt="">
-                        <div>
-                            <p class="title">
-                                <a href="#">Chicken Special Biriyani</a>
-                            </p>
-                            <p class="price">Rs.1500</p>
-                        </div>
-                    </div>
-
-                    <div class="food-result">
-                        <img src="./assets/images/rice.jpg" alt="">
-                        <div>
-                            <p class="title">
-                                <a href="#">Chicken Special Biriyani</a>
-                            </p>
-                            <p class="price">Rs.1500</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="resultColumn">
-                    <p>Food Categories</p>
-                    <div class="cat-result">
-                        <a href="#">Rice</a>
-                        <a href="#">Pasta</a>
-                        <a href="#">Noodles</a>
-                        
-                    </div>
-                </div>
-
-                <div class="resultColumn">
-                    <p>Facilities</p>
-                    <div class="Faci-result">
-                        <a href="#">kids play area</a>
-                        <a href="#">Bar</a>
-                        <a href="#">Free wifi</a>
-                        
-                    </div>
-                </div>
+                <p style="color: white;"> type on the search bar to search </p>
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            // Attach a keyup event handler to the input field
+            $('#SearchText').on('keyup', function() {
+                // Check if the input has more than 3 characters
+                if ($(this).val().length > 3) {
+                    performSearch();
+                }
+            });
+
+            // Attach a click event handler to the search button
+            $('#searchBTN').on('click', function() {
+                performSearch();
+            });
+
+            function performSearch() {
+                // Get the search query from the input field
+                var searchQuery = $('#SearchText').val();
+
+                // Make an AJAX GET request to the "/AJAX/search" path
+                $.ajax({
+                    type: 'GET',
+                    url: '<?= BASE_URL ?>/AJAX/search',
+                    data: { searchText: searchQuery },
+                    success: function(data) {
+                        // Update the resultColumn div with the retrieved data
+                        $('.resultArea').html(data);
+                        console.log(data);
+                    },
+                    error: function(error) {
+                        // Handle the error, e.g., display an error message
+                        console.log('Error: ' + error);
+                    }
+                });
+            }
+        });
+    </script>

@@ -90,11 +90,18 @@
                                     echo "<td>" . substr($value['description'], 0, 50) . '...' . "</td>";
                                     echo "<td>" . $category_name . "</td>";
                                     echo "<td>" . $visibility . "</td>";
-                                    echo "<td>
+                                    if (($_SESSION['admin_role'] == 'admin')) {
+                                        echo "<td>
                                             <a href='". BASE_URL ."/admin-dashboard?page=edit-food-item&id=" . $value['id'] . "' class='btn btn-primary'>Edit</a>
                                             <a href='#' class='btn btn-danger' onclick='deleteFoodItem(" . $value['id'] . ")'>Delete</a>
                                           </td>";
-                                    echo "</tr>";
+                                        echo "</tr>";
+                                
+                                        
+                                }else {
+                                    echo "<td>only view</td>"; }
+                                    
+                                    
                                 }
                             ?>
                             

@@ -164,6 +164,8 @@ Class Customer
 
             $_SESSION['Customer_Id'] = $check[0]['Customer_Id'];
             $_SESSION['Customer_Name'] = $check[0]['Name'];
+
+            session_regenerate_id();
             
             return true;
         }else{
@@ -309,6 +311,13 @@ Class Customer
         } else {
             return $errors;
         }
+    }
+
+    public static function get_all() {
+        
+        $DB = Database::getInstance();
+        return $DB->read("select customers.*, branches.Name AS 'branch_name' from customers
+        inner join branches on customers.PreparedBranch = branches.Branch_Id order by customers.Customer_Id desc");
     }
     
     
