@@ -8,7 +8,7 @@ Class Branch
 	{
 
 		$DB = Database::getInstance();
-		return $DB->read("select * from Branches order by Branch_Id desc");
+		return $DB->read("select * from branches order by Branch_Id desc");
 
 	}
 
@@ -17,7 +17,7 @@ Class Branch
 
 		$DB = Database::getInstance();
 
-        return $DB->read("select * from Branches where Branch_Id = :id limit 1", array('id' => $id));
+        return $DB->read("select * from branches where Branch_Id = :id limit 1", array('id' => $id));
 
 	}
 
@@ -70,7 +70,7 @@ Class Branch
             'Longitude' => $longitude
         );
 
-        $result = $DB->write("INSERT INTO Branches (Name, Address, SeatCapacity, Tel_no, Latitude, Longitude) VALUES (:Name, :Address, :SeatCapacity, :Tel_no, :Latitude, :Longitude)", $data);
+        $result = $DB->write("INSERT INTO branches (Name, Address, SeatCapacity, Tel_no, Latitude, Longitude) VALUES (:Name, :Address, :SeatCapacity, :Tel_no, :Latitude, :Longitude)", $data);
 
         return $result ? array('success' => true) : array('Failed to add the branch.');
     }
@@ -104,7 +104,7 @@ Class Branch
             'Longitude' => $longitude
         );
 
-        $result = $DB->write("UPDATE Branches SET Name = :Name, Address = :Address, SeatCapacity = :SeatCapacity, Tel_no = :Tel_no, Latitude = :Latitude, Longitude = :Longitude WHERE Branch_Id = :Branch_Id", $data);
+        $result = $DB->write("UPDATE branches SET Name = :Name, Address = :Address, SeatCapacity = :SeatCapacity, Tel_no = :Tel_no, Latitude = :Latitude, Longitude = :Longitude WHERE Branch_Id = :Branch_Id", $data);
 
         return $result ? array('success' => true) : array('Failed to update the branch.');
     }
@@ -118,7 +118,7 @@ Class Branch
 
         
  
-        $query = "delete from Branches where Branch_Id  = :id";
+        $query = "delete from branches where Branch_Id  = :id";
 
         $result = $DB->write($query, $DBdata);
 
