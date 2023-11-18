@@ -11,19 +11,24 @@
                 </h3>
                 <div class="F-list-row">
                     <ul class="F-list">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Order Online</a></li>
-                        <li><a href="#">Reservations</a></li>
-                        <li><a href="#">Offers</a></li>
-                        <li><a href="#">Facilities</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Connect Us</a></li>
+                        <li><a href="<?= BASE_URL ?>/">Home</a></li>
+                        <li><a href="<?= BASE_URL ?>/online-order">Order Online</a></li>
+                        <li><a href="<?= BASE_URL ?>/reservation">Reservations</a></li>
+                        <li><a href="<?= BASE_URL ?>/gallery">Gallery</a></li>
+                        <li><a href="<?= BASE_URL ?>/facility">Facilities</a></li>
+                        <li><a href="<?= BASE_URL ?>/about">About Us</a></li>
+                        <li><a href="<?= BASE_URL ?>/contact">Connect Us</a></li>
                     </ul>
                     <ul class="F-list">
-                        <li><a href="#">Sign in</a></li>
-                        <li><a href="#">Log in</a></li>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">Cart</a></li>
+                    <?php if (isset($_SESSION['Customer_Id'])): ?>
+            
+                        <li><a href="<?= BASE_URL ?>/my-account">My Account</a></li>
+                        <?php else: ?>
+
+                        <li><a href="<?= BASE_URL ?>/login">Login</a></li>
+                        <li><a href="<?= BASE_URL ?>/register">Register</a></li>
+                        <?php endif; ?>
+                        <li><a href="<?= BASE_URL ?>/cart">Cart</a></li>
 
                     </ul>
 

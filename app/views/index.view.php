@@ -17,10 +17,10 @@
                     Experience Unforgettable Flavors, Create Cherished Moments
                 </p>
 
-                <a class="btn-main" href="#">
+                <a class="btn-main" href="<?= BASE_URL ?>/reservation">
                     Make a Reservation
                 </a>
-                <a class="btn-secondery" href="#">
+                <a class="btn-secondery" href="<?= BASE_URL ?>/online-order">
                     Order for Home Delivery
                 </a>
             </div>
@@ -69,7 +69,7 @@
                         timeless traditions with innovative techniques. Our commitment to excellence ensures an
                         unforgettable dining experience that delights your palate and captivates your senses
                     </p>
-                    <a class="btn-main" href="#">
+                    <a class="btn-main" href="<?= BASE_URL ?>/online-order">
                         Order Online Now
                     </a>
                 </div>
@@ -90,7 +90,7 @@
                         your preferred date, time, party size, and any special requests. Your table awaits—simply click
                         "Secure Your Reservation" to start your culinary adventure.
                     </p>
-                    <a href="#" class="btn-main">Secure Your Reservation</a>
+                    <a href="<?= BASE_URL ?>/reservation" class="btn-main">Secure Your Reservation</a>
                 </div>
                 <div class="sec3-imgs">
                     <img src="./assets/images/sec2-card (1).jpg" alt="">
@@ -144,7 +144,7 @@
                 </div>
             </div>
             <div class="sec4-cta-row">
-                <a href="#" class="btn-main" data-aos="fade-right">Learn more &RightArrow;</a>
+                <a href="<?= BASE_URL ?>/facility" class="btn-main" data-aos="fade-right">Learn more &RightArrow;</a>
             </div>
         </div>
         <img src="./assets/images/sec-4-noodles.png" alt="">
@@ -240,7 +240,7 @@
                         savor the flavors that tell our story.
                         <br />Join us on a voyage through the art of taste and tradition
                     </p>
-                    <a href="#" class="btn-main">Learn More About Us</a>
+                    <a href="<?= BASE_URL ?>/about" class="btn-main">Learn More About Us</a>
                 </div>
                 <img src="./assets/images/restaurant_menu_card 1.jpg" alt="menu card" data-aos="fade-left">
             </div>
@@ -259,7 +259,7 @@
                 <br>
                 Contact us today to enhance your dining experience.
             </p>
-            <a href="#" class="btn-main">Get in Touch</a>
+            <a href="<?= BASE_URL ?>/contact" class="btn-main">Get in Touch</a>
         </div>
 
         <img src="./assets/images/home-sec7-back.png" alt="">
