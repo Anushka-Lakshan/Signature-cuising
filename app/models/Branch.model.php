@@ -109,5 +109,27 @@ Class Branch
         return $result ? array('success' => true) : array('Failed to update the branch.');
     }
 
+    public static function delete_branch($id){
+        $DB = Database::getInstance();
+
+        $DBdata = array(
+            'id' => $id
+        );
+
+        
+ 
+        $query = "delete from Branches where Branch_Id  = :id";
+
+        $result = $DB->write($query, $DBdata);
+
+        if($result)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
+
 	
 }

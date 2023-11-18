@@ -83,14 +83,12 @@ class Order
                 'user_note' => $_POST['ord-note'],
                 'payment_method' => $_POST['payment'],
                 'address' => $_POST['ord-Address'],
-                'confirmed_by' => "",
-                'canceled_by' => "",
                 'admin_note' => ""
             );
 
             $query = "insert into orders 
-                (customer_id, name, branch_id, order_details, status, ordered_dt, location, user_note, payment_method, address, confirmed_by, canceled_by, admin_note) values 
-                (:customer_id, :name, :branch_id, :order_details, :status, :ordered_dt, :location, :user_note,:payment_method, :address, :confirmed_by, :canceled_by, :admin_note)";
+                (customer_id, name, branch_id, order_details, status, ordered_dt, location, user_note, payment_method, address, admin_note) values 
+                (:customer_id, :name, :branch_id, :order_details, :status, :ordered_dt, :location, :user_note,:payment_method, :address, :admin_note)";
 
             $result = $DB->write($query, $DBdata);
 
@@ -105,5 +103,20 @@ class Order
 
     }
 
+    public static function update_order_status($orderId, $newStatus,$change_by) {
+        $DB = Database::getInstance();
+    
+        $query = "UPDATE orders SET status = :new_status , last_change = :change_by WHERE id = :order_id";
+        $params = array('new_status' => $newStatus, 'order_id' => $orderId, 'change_by' => $change_by);
+    
+        $result = $DB->write($query, $params);
+    
+        if($result) {
+            return array('success' => true);
+        } else {
+            return array('Failed to update order status.');
+        }
+    }
+    
 
 }

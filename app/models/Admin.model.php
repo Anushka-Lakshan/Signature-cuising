@@ -113,6 +113,8 @@ class Admin
                 $_SESSION['admin_name'] = $check[0]['username'];
                 $_SESSION['admin_role'] = $check[0]['role'];
 
+                session_regenerate_id();
+
                 sweetAlert("Login success!", "welcome back " . $_SESSION['admin_name'], "success");
                 header("Location: ".BASE_URL."/admin-dashboard");
                 exit();
@@ -129,36 +131,33 @@ class Admin
         }
     }
 
-    public static function Login_to_system($email, $password)
-    {
-
-        $data = array();
-        $errors = array();
-        $db = Database::getInstance();
-
-        //check user exist
-        $sql = "select * from customers where Email = :email and Password = :password limit 1";
-        $arr['email'] = $email;
-        $arr['password'] = hash('sha3-256', $password);
-
-        $check = $db->read($sql, $arr);
-
-        if (is_array($check) && count($check) > 0) {
-
-
-            $_SESSION['Customer_Id'] = $check[0]['Customer_Id'];
-            $_SESSION['Customer_Name'] = $check[0]['Name'];
-
-            return true;
-        } else {
-            return false;
-        }
-    }
+    
 
     public static function get_all()
     {
 
         $DB = Database::getInstance();
         return $DB->read("select id,name,username,role from admins order by id asc");
+    }
+
+    public static function deleteAdmin($id)
+    {
+
+        $DB = Database::getInstance();
+        $DBdata = array(
+            'id' => $id
+        );
+
+        $query = "delete from admins where id = :id";
+
+        $result = $DB->write($query, $DBdata);
+
+        if ($result) {
+            return true;
+        }else{
+            return false;
+        }
+
+        
     }
 }

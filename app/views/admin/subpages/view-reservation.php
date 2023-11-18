@@ -236,18 +236,7 @@
                                 <i class="far fa-clock me-1"></i> <?= $reservationData[0]['status'] ?>
                             </div>
                             <div class="col-sm-7">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Change Status
-                                    </button>
-                                    <div class="dropdown-menu" style="margin: 0px;">
-                                        <a class="dropdown-item" href="#">Confirmed</a>
-
-                                        <a class="dropdown-item" href="#">Completed</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger" href="#">Cancelled</a>
-                                    </div>
-                                </div>
+                               
                             </div>
                         </div>
 
@@ -267,17 +256,17 @@
                             <div class="col-sm-9">
                                 <?= $reservationData[0]['name'] ?>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row mb-1">
                             <div class="col-sm-3 text-end font-bold">
-                                Confirmed by
+                                Status change by
                             </div>
                             <div class="col-sm-9">
                                 <?= $reservationData[0]['Confirmed_by'] ?: 'not-yet' ?>
                             </div>
                         </div>
 
-                        <div class="row mb-1">
+                        <!--<div class="row mb-1">
                             <div class="col-sm-3 text-end font-bold">
                                 Cancelled by
                             </div>

@@ -49,8 +49,8 @@
                                 <th>DOB</th>
                                 <th>NIC</th>
                                 <th>Address</th>
-                                <th>Branch</th>
-                                <th>Action</th>
+                                <th>Prepared Branch</th>
+                                <!-- <th>Action</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -82,9 +82,9 @@
                                     <td><?= $customer['NIC'] ?></td>
                                     <td><?= $customer['Address'] ?></td>
                                     <td><?= $customer['branch_name'] ?></td>
-                                    <td>
+                                    <!-- <td>
                                         <button class="btn btn-danger">Reset Password</button>
-                                    </td>
+                                    </td> -->
                                 </tr>
                             <?php endforeach; ?>
 
@@ -98,8 +98,8 @@
                                 <th>DOB</th>
                                 <th>NIC</th>
                                 <th>Address</th>
-                                <th>Branch</th>
-                                <th>Action</th>
+                                <th>Prepared Branch</th>
+                                <!-- <th>Action</th> -->
                             </tr>
                         </tfoot>
                     </table>

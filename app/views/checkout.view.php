@@ -23,20 +23,6 @@
 <div class="container">
     <div class="row">
 
-        
-
-        <?php
-
-        
-
-        if(count($errors) > 0){
-            echo '<div class="alert alert-danger" style = "color:red">';
-            foreach($errors as $error){
-                echo $error . '<br>';
-            }
-            echo '</div>';
-        }
-        ?>
 
         <div class="col-md-6">
             <div class="cart">

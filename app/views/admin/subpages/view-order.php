@@ -43,187 +43,7 @@
                 <div class="card">
 
 
-                    <!-- <div class="card-body">
 
-                                <div class="row mb-1">
-                                    <div class="col-sm-3 text-end font-bold">
-                                        Order No
-                                    </div>
-                                    <div class="col-sm-9">
-                                        002
-                                    </div>
-                                </div>
-
-                                <div class="row mb-1">
-                                    <div class="col-sm-3 text-end font-bold">
-                                        Customer Name
-                                    </div>
-                                    <div class="col-sm-9">
-                                        Anushka Lakshan
-                                    </div>
-                                </div>
-
-                                <div class="row mb-1">
-                                    <div class="col-sm-3 text-end font-bold">
-                                        Ordered Branch
-                                    </div>
-                                    <div class="col-sm-9">
-                                        Colombo
-                                    </div>
-                                </div>
-
-                                <div class="row mb-1">
-                                    <div class="col-sm-3 text-end font-bold">
-                                        Order Details
-                                    </div>
-                                    <div class="col-sm-9">
-
-                                        <table class="table table-bordered">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Unit Price</th>
-                                                    <th scope="col">Quantity</th>
-                                                    <th scope="col">Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Chicken Biriyani</td>
-                                                    <td>Rs.1200</td>
-                                                    <td>2</td>
-                                                    <td>Rs.2400</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Mix rice</td>
-                                                    <td>Rs.1100</td>
-                                                    <td>1</td>
-                                                    <td>Rs.1100</td>
-                                                </tr>
-
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th scope="row" colspan="4">Item Total Price</th>
-                                                    <td>Rs.2500</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <th scope="row" colspan="4">Delivery Charge</th>
-                                                    <td>Rs.300</td>
-                                                </tr>
-
-                                                <tr class="font-bold">
-                                                    <th scope="row" colspan="4">Sub Total</th>
-                                                    <td>Rs. 2800</td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-
-                                    </div>
-                                </div>
-
-                                <div class="row mb-1">
-                                    <div class="col-sm-3 text-end font-bold">
-                                        Payment method
-                                    </div>
-                                    <div class="col-sm-9">
-                                        Cash on delivery
-                                    </div>
-                                </div>
-
-                                <div class="row mb-1">
-                                    <div class="col-sm-3 text-end font-bold">
-                                        Current Status
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <i class="far fa-clock me-1"></i> Pending
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Change Status
-                                            </button>
-                                            <div class="dropdown-menu" style="margin: 0px;">
-                                              <a class="dropdown-item" href="#">Preparing</a>
-                                              <a class="dropdown-item" href="#">Delivering</a>
-                                              <a class="dropdown-item" href="#">Completed</a>
-                                              <div class="dropdown-divider"></div>
-                                              <a class="dropdown-item text-danger" href="#">Cancelled</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-1">
-                                    <div class="col-sm-3 text-end font-bold">
-                                        Ordered Date & Time
-                                    </div>
-                                    <div class="col-sm-9">
-                                        10/31/2023 17:50
-                                    </div>
-                                </div>
-
-                                <div class="row mb-1">
-                                    <div class="col-sm-3 text-end font-bold">
-                                        Address
-                                    </div>
-                                    <div class="col-sm-9">
-                                        5/18, Fiesi lane, Colombo 7
-                                    </div>
-                                </div>
-
-                                <div class="row mb-1">
-                                    <div class="col-sm-3 text-end font-bold">
-                                        User Note
-                                    </div>
-                                    <div class="col-sm-9">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur sapiente, minus, blanditiis iusto provident inventore quas quis in culpa magnam tempora ipsum facilis nam quos alias corrupti repellat quasi reprehenderit.
-                                    </div>
-                                </div>
-
-                                <div class="row mb-1">
-                                    <div class="col-sm-3 text-end font-bold">
-                                        Confirmed by
-                                    </div>
-                                    <div class="col-sm-9">
-                                        not-yet
-                                    </div>
-                                </div>
-
-                                <div class="row mb-1">
-                                    <div class="col-sm-3 text-end font-bold">
-                                        Delivered by
-                                    </div>
-                                    <div class="col-sm-9">
-                                        not-yet
-                                    </div>
-                                </div>
-
-                                <div class="row mb-1">
-                                    <div class="col-sm-3 text-end font-bold">
-                                        Cancelled by
-                                    </div>
-                                    <div class="col-sm-9">
-                                        not-yet
-                                    </div>
-                                </div>
-
-                                <div class="row mb-1">
-                                    <div class="col-sm-3 text-end font-bold">
-                                        Admin Note
-                                    </div>
-                                    <div class="col-sm-9">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda labore quos vitae reiciendis atque voluptates veniam aperiam nesciunt? Consequuntur a voluptate ipsum doloribus quibusdam voluptatem odit. Aliquam vero atque perspiciatis?
-                                    </div>
-                                </div>
-
-
-
-                            </div> -->
 
                     <div class="card-body">
                         <div class="row mb-1">
@@ -315,11 +135,11 @@
                             </div>
                         </div>
 
-                        <div class="row mb-1">
+                        <div class="row mb-1" style="overflow: visible;">
                             <div class="col-sm-3 text-end font-bold">
                                 Current Status
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-2 text-default">
                                 <?php
                                 $statusClass = '';
                                 if ($orderData['status'] === 'Pending') {
@@ -331,18 +151,7 @@
                                 ?>
                             </div>
                             <div class="col-sm-7">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Change Status
-                                    </button>
-                                    <div class="dropdown-menu" style="margin: 0px;">
-                                        <a class="dropdown-item" href="#">Preparing</a>
-                                        <a class="dropdown-item" href="#">Delivering</a>
-                                        <a class="dropdown-item" href="#">Completed</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger" href="#">Cancelled</a>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
 
@@ -375,23 +184,14 @@
 
                         <div class="row mb-1">
                             <div class="col-sm-3 text-end font-bold">
-                                Confirmed by
+                                Last Change Made by
                             </div>
                             <div class="col-sm-9">
-                                <?= $orderData['confirmed_by'] ? $orderData['confirmed_by'] : 'not-yet' ?>
+                                <?= $orderData['last_change'] ? $orderData['last_change'] : 'not-yet' ?>
                             </div>
                         </div>
 
 
-
-                        <div class="row mb-1">
-                            <div class="col-sm-3 text-end font-bold">
-                                Cancelled by
-                            </div>
-                            <div class="col-sm-9">
-                                <?= $orderData['canceled_by'] ? $orderData['canceled_by'] : 'not-yet' ?>
-                            </div>
-                        </div>
 
                         <div class="row mb-1">
                             <div class="col-sm-3 text-end font-bold">
@@ -403,24 +203,24 @@
                         </div>
 
                         <?php $locationData = json_decode($orderData['location'], true);
-                        
-                        if(is_array($locationData)){
+
+                        if (is_array($locationData)) {
                             $latitude = $locationData['latitude'];
                             $longitude = $locationData['longitude'];
-                        
-                        
+
+
                         ?>
 
-                        <div class="row mb-1">
-                            <div class="col-sm-3 text-end font-bold">
-                                Customer Location
-                            </div>
-                            <div class="col-sm-9">
+                            <div class="row mb-1">
+                                <div class="col-sm-3 text-end font-bold">
+                                    Customer Location
+                                </div>
+                                <div class="col-sm-9">
 
-                                <iframe width="350" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=<?= $latitude ?>,<?= $longitude ?>&language=en&z=14&amp;output=embed">
-                                </iframe>
+                                    <iframe width="350" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=<?= $latitude ?>,<?= $longitude ?>&language=en&z=14&amp;output=embed">
+                                    </iframe>
+                                </div>
                             </div>
-                        </div>
                         <?php } ?>
                     </div>
 
@@ -433,6 +233,46 @@
         <!--              End-->
 
     </div>
+
+
+    <script>
+            function changeOrderStatus(id, status) {
+                Swal.fire({
+                            title: 'Change Order Status',
+                            text: 'Do you want to change the order status to ' + status + '?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#ff6347',
+                            cancelButtonColor: '#48c28d',
+                            confirmButtonText: 'Yes'
+
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Perform actions with the form data, e.g., make an AJAX request
+                                $.ajax({
+                                    url: '<?=BASE_URL?>/admin/AJAX/change_order_status',
+                                    type: 'POST',
+                                    data: { order_id: id, status: status },
+                                    success: function (data) {
+                                        // Check the response from the server
+                                        if (data.success) {
+                                            Swal.fire('Success', data.message, 'success').then(() => {
+                                                window.location.reload();
+                                            })
+                                        } else {
+                                            Swal.fire('Failed', data.message, 'error');
+                                            console.log(data);
+                                        }
+                                    },
+                                    error: function () {
+                                        Swal.fire('Error', 'An error occurred while submitting the form', 'error');
+                                        console.log(data);
+                                    }
+                                });
+                            }
+                        })
+            }
+        </script>
     <!-- ============================================================== -->
     <!-- End Container fluid  -->
     <!-- ============================================================== -->

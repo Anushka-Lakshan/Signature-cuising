@@ -115,11 +115,10 @@
                                                 Change Status
                                             </button>
                                             <div class="dropdown-menu" style="margin: 0px;">
-                                                <a class="dropdown-item" href="#">Preparing</a>
-                                                <a class="dropdown-item" href="#">Confirmed</a>
-                                                <a class="dropdown-item" href="#">Completed</a>
+                                                <a class="dropdown-item" onclick="changeReservationStatus(<?= $reservation['id'] ?>, 'Confirmed')">Confirmed</a> 
+                                                <a class="dropdown-item" onclick="changeReservationStatus(<?= $reservation['id'] ?>, 'Completed')">Completed</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger" href="#">Cancelled</a>
+                                                <a class="dropdown-item text-danger" onclick="changeReservationStatus(<?= $reservation['id'] ?>, 'Cancelled')">Cancelled</a>
                                             </div>
                                         </div>
                                     </td>
@@ -152,7 +151,44 @@
 
 
 
+        <script>
+            function changeReservationStatus(Rid, status) {
+                Swal.fire({
+                            title: 'Change Reservation Status',
+                            text: 'Do you want to change the reservation status to ' + status + '?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#ff6347',
+                            cancelButtonColor: '#48c28d',
+                            confirmButtonText: 'Yes'
 
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Perform actions with the form data, e.g., make an AJAX request
+                                $.ajax({
+                                    url: '<?=BASE_URL?>/admin/AJAX/change_reservation_status',
+                                    type: 'POST',
+                                    data: { id: Rid, status: status },
+                                    success: function (data) {
+                                        // Check the response from the server
+                                        if (data.success) {
+                                            Swal.fire('Success', data.message, 'success').then(() => {
+                                                window.location.reload();
+                                            })
+                                        } else {
+                                            Swal.fire('Failed', data.message, 'error');
+                                            console.log(data);
+                                        }
+                                    },
+                                    error: function () {
+                                        Swal.fire('Error', 'An error occurred while submitting the form', 'error');
+                                        console.log(data);
+                                    }
+                                });
+                            }
+                        })
+            }
+        </script>
 
         <!--              End-->
 

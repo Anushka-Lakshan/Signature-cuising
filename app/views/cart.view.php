@@ -267,6 +267,42 @@
             })
 
         }
+
+        function updateQuantity(id, quantity){
+            let product_id = id;
+            let new_quantity = quantity;
+
+            if(new_quantity <= 0) {
+                Swal.fire('Failed', 'Minimum quantity is 1', 'warning');
+            }else if(new_quantity > 10){
+                Swal.fire('Failed', 'Maximum order quantity is 10', 'warning');
+            }else{
+
+
+                $.ajax({
+                    url: '<?=BASE_URL?>/AJAX/cartControll',
+                    type: 'POST',
+                    data: { id: product_id, quantity: new_quantity, action: 'update' },
+                    success: function (respose_data) {
+                        // Check the response from the server
+                        if (respose_data.success) {
+                            Swal.fire('Success', respose_data.message, 'success').then(() => {
+                                location.reload();
+                            })
+                        }else{
+                            Swal.fire('Failed', 'something went wrong, please try again', 'error');
+                            console.log(respose_data);
+                        }
+
+                    },
+                    error: function (respose_data) {
+                        Swal.fire('Error', 'An error occurred while submitting the form', 'error');
+                        console.log(respose_data);
+                    }
+                });
+
+            }
+        }
     </script>
 
 

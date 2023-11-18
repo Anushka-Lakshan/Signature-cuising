@@ -71,8 +71,8 @@
                                             echo "<td>" . $value['username'] . "</td>";
                                             echo "<td>" . $value['role'] . "</td>";
                                             echo "<td>
-                                                    <button class='btn btn-warning'> Reset Password </button>
-                                                    <button class='btn btn-danger'> Delete User </button>
+                                                    
+                                                    <button class='btn btn-danger' onclick='Delete_member(" . $value['id'] . ")'> Delete User </button>
                                                   </td>";
                                             echo "</tr>";
                                         }
@@ -92,6 +92,45 @@
                 <!--              End-->
 
             </div>
+
+            <script>
+            function Delete_member(id) {
+                        Swal.fire({
+                            title: 'Are you sure? You want to delete this Member?',
+                            text: "You won't be able to revert this!, proceed with caution!!!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#ff6347',
+                            cancelButtonColor: '#48c28d',
+                            confirmButtonText: 'Yes, delete !'
+
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Perform actions with the form data, e.g., make an AJAX request
+                                $.ajax({
+                                    url: '<?=BASE_URL?>/admin/AJAX/delete_member',
+                                    type: 'POST',
+                                    data: { mem_id: id },
+                                    success: function (data) {
+                                        // Check the response from the server
+                                        if (data.success) {
+                                            Swal.fire('Success', 'Member deleted successfully', 'success').then(() => {
+                                                window.location.reload();
+                                            })
+                                        } else {
+                                            Swal.fire('Failed', 'member could not be deleted', 'error');
+                                            console.log(data);
+                                        }
+                                    },
+                                    error: function () {
+                                        Swal.fire('Error', 'An error occurred while submitting the form', 'error');
+                                        console.log(data);
+                                    }
+                                });
+                            }
+                        })
+                    }
+        </script>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->

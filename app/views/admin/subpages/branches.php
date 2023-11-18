@@ -81,8 +81,8 @@
                                     <td><?= $branch['Longitude'] ?></td>
                                     <td><?= $branch['SeatCapacity'] ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-primary">Edit</a>
-                                        <a href="#" class="btn btn-danger">Delete</a>
+                                        <a href="admin-dashboard?page=edit-branch&branch_id=<?= $branch['Branch_Id'] ?>" class="btn btn-primary">Edit</a>
+                                        <a href="#" class="btn btn-danger" onclick="Delete_branch(<?= $branch['Branch_Id'] ?>)">Delete</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -107,7 +107,44 @@
         </div>
 
 
+        <script>
+            function Delete_branch(id) {
+                        Swal.fire({
+                            title: 'Are you sure? You want to delete this Branch?',
+                            text: "You won't be able to revert this!, proceed with caution!!!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#ff6347',
+                            cancelButtonColor: '#48c28d',
+                            confirmButtonText: 'Yes, delete it!'
 
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Perform actions with the form data, e.g., make an AJAX request
+                                $.ajax({
+                                    url: '<?=BASE_URL?>/admin/AJAX/delete_branch',
+                                    type: 'POST',
+                                    data: { branch_id: id },
+                                    success: function (data) {
+                                        // Check the response from the server
+                                        if (data.success) {
+                                            Swal.fire('Success', 'branch deleted successfully', 'success').then(() => {
+                                                window.location.reload();
+                                            })
+                                        } else {
+                                            Swal.fire('Failed', 'branch could not be deleted', 'error');
+                                            console.log(data);
+                                        }
+                                    },
+                                    error: function () {
+                                        Swal.fire('Error', 'An error occurred while submitting the form', 'error');
+                                        console.log(data);
+                                    }
+                                });
+                            }
+                        })
+                    }
+        </script>
 
 
         <!--              End-->

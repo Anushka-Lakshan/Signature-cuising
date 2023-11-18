@@ -78,5 +78,21 @@ Class Reservation
 
     }
 
+    public static function update_reservation_status($reservationId, $newStatus, $change_by) {
+        $DB = Database::getInstance();
+    
+        $query = "UPDATE reservations SET status = :new_status , Confirmed_by = :change_by WHERE id = :reservation_id";
+        $params = array('new_status' => $newStatus, 'reservation_id' => $reservationId, 'change_by' => $change_by);
+    
+        $result = $DB->write($query, $params);
+    
+        if ($result) {
+            return array('success' => true);
+        } else {
+            return array('Failed to update reservation status.');
+        }
+    }
+    
+
 	
 }

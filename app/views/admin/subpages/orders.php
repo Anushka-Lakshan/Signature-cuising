@@ -153,9 +153,15 @@
                         <?php
                         $statusClass = '';
                         if ($order['status'] === 'Pending') {
-                            $statusClass = 'text-warning';
-                        } elseif ($order['status'] === 'Preparing') {
                             $statusClass = 'text-danger';
+                        } elseif ($order['status'] === 'Preparing') {
+                            $statusClass = 'text-warning';
+                        } elseif ($order['status'] === 'Delivering') {
+                            $statusClass = 'text-primary';
+                        } elseif ($order['status'] === 'Completed') {
+                            $statusClass = 'text-success';
+                        }elseif ($order['status'] === 'Cancelled') {
+                            $statusClass = 'bg-danger text-white p-1';
                         }
                         echo '<span class="' . $statusClass . '"><i class="far fa-clock me-1"></i> ' . $order['status'] . '</span>';
                         ?>
@@ -172,11 +178,11 @@
                                 Change Status
                             </button>
                             <div class="dropdown-menu" style="margin: 0px;">
-                                <a class="dropdown-item" href="#">Preparing</a>
-                                <a class="dropdown-item" href="#">Delivering</a>
-                                <a class="dropdown-item" href="#">Completed</a>
+                                <a class="dropdown-item" onclick="changeOrderStatus(<?= $order['id'] ?>, 'Preparing')" href="#">Preparing</a>
+                                <a class="dropdown-item" onclick="changeOrderStatus(<?= $order['id'] ?>, 'Delivering')" href="#">Delivering</a>
+                                <a class="dropdown-item" onclick="changeOrderStatus(<?= $order['id'] ?>, 'Completed')" href="#">Completed</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="#">Cancelled</a>
+                                <a class="dropdown-item text-danger" onclick="changeOrderStatus(<?= $order['id'] ?>, 'Cancelled')" href="#">Cancelled</a>
                             </div>
                         </div>
                     </td>
@@ -205,6 +211,45 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            function changeOrderStatus(id, status) {
+                Swal.fire({
+                            title: 'Change Order Status',
+                            text: 'Do you want to change the order status to ' + status + '?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#ff6347',
+                            cancelButtonColor: '#48c28d',
+                            confirmButtonText: 'Yes'
+
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Perform actions with the form data, e.g., make an AJAX request
+                                $.ajax({
+                                    url: '<?=BASE_URL?>/admin/AJAX/change_order_status',
+                                    type: 'POST',
+                                    data: { order_id: id, status: status },
+                                    success: function (data) {
+                                        // Check the response from the server
+                                        if (data.success) {
+                                            Swal.fire('Success', data.message, 'success').then(() => {
+                                                window.location.reload();
+                                            })
+                                        } else {
+                                            Swal.fire('Failed', data.message, 'error');
+                                            console.log(data);
+                                        }
+                                    },
+                                    error: function () {
+                                        Swal.fire('Error', 'An error occurred while submitting the form', 'error');
+                                        console.log(data);
+                                    }
+                                });
+                            }
+                        })
+            }
+        </script>
 
 
 
