@@ -32,6 +32,7 @@ The project follows the MVC (Model-View-Controller) architecture for clean and r
 
 The user interface is designed adhering to UI/UX principles. It is responsive, ensuring a seamless experience across various devices and screen sizes.
 
+View UI design [here](https://www.figma.com/file/6aSKSGqoJ3V9Yrdt8UiGVV/Signature-cuisine?type=design&node-id=0%3A1&mode=design&t=YC3HmPichETKE6CK-1)
 
 
 ## Site Screenshots
